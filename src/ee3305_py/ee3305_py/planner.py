@@ -54,9 +54,16 @@ class Planner(Node):
         )
 
         # !TODO: Path request subscriber
+        self.sub_path_request_ = self.create_subscription(
+            Path,
+            "path_request",
+            self.callbackSubPathRequest_,
+            10,
+        )
 
         # Handles: Publishers
         # !TODO: Path publisher
+        self.pub_path_ = self.create_publisher(Path, "path", 10)
 
         # Handles: Timers
         self.timer = self.create_timer(0.1, self.callbackTimer_)
@@ -71,7 +78,10 @@ class Planner(Node):
     def callbackSubPathRequest_(self, msg: Path):   
         
         # !TODO: write to rbt_x_, rbt_y_, goal_x_, goal_y_
-        self.rbt_x_ = msg.poses[1].pose.orientation.x
+        self.rbt_x_ = msg.poses[0].pose.position.x
+        self.rbt_y_ = msg.poses[0].pose.position.y
+        self.goal_x_ = msg.poses[1].pose.position.x
+        self.goal_y_ = msg.poses[1].pose.position.y
 
         self.has_new_request_ = True
 
@@ -80,8 +90,16 @@ class Planner(Node):
     def callbackSubGlobalCostmap_(self, msg: OccupancyGrid):
         
         # !TODO: write to costmap_, costmap_resolution_, costmap_origin_x_, costmap_origin_y_, costmap_rows_, costmap_cols_
+        self.costmap_ = msg.data
+        self.costmap_resolution_ = msg.info.resolution
+        self.costmap_origin_x_ = msg.info.origin.position.x
+        self.costmap_origin_y_ = msg.info.origin.position.y
         self.costmap_cols_ = msg.info.width
-
+        self.costmap_rows_ = msg.info.height
+        self.get_logger().info(
+            f"Costmap received: {self.costmap_cols_} x {self.costmap_rows_} cells, "
+            f"{self.costmap_resolution_} m per cell"
+        )
         self.received_map_ = True
 
     # runs the path planner at regular intervals as long as there is a new path request.
