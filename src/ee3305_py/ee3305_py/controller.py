@@ -13,7 +13,7 @@ class Controller(Node):
     def __init__(self, node_name="controller"):
         # Node Constructor =============================================================
         super().__init__(node_name)
-
+        
         # Parameters: Declare
         self.declare_parameter("frequency", float(20))
         self.declare_parameter("lookahead_distance", float(0.3))
@@ -31,14 +31,19 @@ class Controller(Node):
         self.max_ang_vel_ = self.get_parameter("max_ang_vel").value
 
         # Handles: Topic Subscribers
+        # We can use ros2 topic list to find all the available topic names
         # !TODO: path subscriber
-
+        self.sub_path_ = self.create_subscription(Path, "path", self.callbackSubPath_, qos_profile_sensor_data)
+        
         # !TODO: odometry subscriber
+        self.sub_odometry_ = self.create_subscription(Odometry, "odom", self.callbackSubOdom_, qos_profile_sensor_data)
 
         # Handles: Topic Publishers
         # !TODO: command velocities publisher
+        self.pub_cmd_vel_ = self.create_publisher(TwistStamped, "cmd_vel", 1)
 
         # !TODO: lookahead point publisher
+        self.pub_lookahead_ = self.create_publisher(PoseStamped, "lookahead", 1)
         
         # Handles: Timers
         self.timer = self.create_timer(1.0 / self.frequency_, self.callbackTimer_)
@@ -50,23 +55,26 @@ class Controller(Node):
     # Callbacks =============================================================
     
     # Path subscriber callback
+    # ros2 interface show nav_msgs/msg/Path
     def callbackSubPath_(self, msg: Path):
         if len(msg.poses) == 0:  # not msg.poses is fine but not clear
             self.get_logger().warn(f"Received path message is empty!")
             return  # do not update the path if no path is returned. This will ensure the copied path contains at least one point when the first non-empty path is received.
 
         # !TODO: copy the array from the path
-        self.path_poses_ = []
+        self.path_poses_ = list(msg.poses)
 
-        self.received_path_ = True
+        self.received_path_ = True 
 
     # Odometry subscriber callback
+    # ros2 interface show nav_msgs/msg/Odometry
     def callbackSubOdom_(self, msg: Odometry):
         # !TODO: write robot pose to rbt_x_, rbt_y_, rbt_yaw_
         self.rbt_x_ = msg.pose.pose.position.x
+        self.rbt_y_ = msg.pose.pose.position.y
 
         q = msg.pose.pose.orientation
-        self.rbt_yaw_ = q.w
+        self.rbt_yaw_ = atan2(2*(q.w*q.z + q.x*q.y), 1 - 2*((q.y**2 + q.z**2)))
 
         self.received_odom_ = True
 
@@ -74,10 +82,20 @@ class Controller(Node):
     # Make sure path and robot positions are already received, and the path contains at least one point.
     def getLookaheadPoint_(self):
         # Find the point along the path that is closest to the robot
+        distance_list = list()
+        for pose in self.path_poses_:
+            distance_list.append(hypot(pose.pose.position.x - self.rbt_x_, pose.pose.position.y - self.rbt_y_))
+        closest_idx = distance_list.index(min(distance_list))
 
         # From the closest point, iterate towards the goal and find the first point that is at least a lookahead distance away.
         # Return the goal point if no such lookahead point can be found
-        lookahead_idx = len(self.path_poses_) - 1
+        lookahead_idx = len(self.path_poses_) - 1 # Default lookahead_idx
+        for point in range(closest_idx, len(self.path_poses_)):
+            pose = self.path_poses_[point]
+            distance = hypot(pose.pose.position.x - self.rbt_x_, pose.pose.position.y - self.rbt_y_)
+            if distance >= self.lookahead_distance_:
+                lookahead_idx = point # We want the first point only
+                break # Break after we get the first point
 
         # Get the lookahead coordinates
         lookahead_pose = self.path_poses_[lookahead_idx]
@@ -104,17 +122,33 @@ class Controller(Node):
         lookahead_x, lookahead_y = self.getLookaheadPoint_()
 
         # get distance to lookahead point (not to be confused with lookahead_distance)
-
+        distance_rbt_to_lookahead = hypot(lookahead_x - self.rbt_x_, lookahead_y - self.rbt_y_)
+        
         # stop the robot if close to the point.
+        # We make use of the stop threshold variable (self.stop_thres_)
+        goal_pose = self.path_poses_[-1] # Index [-1] to get the last pose, which is also the goal pose
+        distance_to_goal = hypot(goal_pose.pose.position.x - self.rbt_x_, goal_pose.pose.position.y - self.rbt_y_) # Get distance from goal to robot
 
-        # get curvature
+        if distance_to_goal <= self.stop_thres_: # If the distance between the goal is smaller or equal to stop threshold, stop the bot
+            lin_vel = 0.0
+            ang_vel = 0.0
+        else:
+            # get curvature
+            delta_x = lookahead_x - self.rbt_x_ # Target point from robot (x-direction)
+            delta_y = lookahead_y - self.rbt_y_ # Target point from robot (y-direction)
+            y_prime = (delta_y * cos(self.rbt_yaw_)) - (delta_x * sin(self.rbt_yaw_))
+            curvature = (2 * y_prime)/(distance_rbt_to_lookahead**2)
 
-        # calculate velocities
+            # calculate velocities
+            lin_vel = self.lookahead_lin_vel_ # Value is a constant chosen by user (line 20)
+            lin_vel = min(lin_vel, self.max_lin_vel_) # At any scenario, lin_vel will adhere to maximum speed
+            ang_vel = curvature * lin_vel # w(k) = c(k)*v(t) -> ang_vel = curvature * lin_vel
 
-        # saturate velocities. The following can result in the wrong curvature,
-        # but only when the robot is travelling too fast (which should not occur if well tuned).
-        lin_vel = 0.0
-        ang_vel = 0.0 * lookahead_x * lookahead_y
+            # saturate velocities. The following can result in the wrong curvature,
+            # but only when the robot is travelling too fast (which should not occur if well tuned).
+            # Saturation means limiting a calculated value so it does not exceed an allowed range
+            ang_vel = max(ang_vel, -self.max_ang_vel_) # ang_vel can be positive or negative depending on the direction
+            ang_vel = min(ang_vel, self.max_ang_vel_)
 
         # publish velocities
         msg_cmd_vel = TwistStamped()
