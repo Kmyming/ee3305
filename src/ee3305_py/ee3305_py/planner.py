@@ -148,43 +148,52 @@ class Planner(Node):
 
     # Converts world coordinates to cell column and cell row.
     def XYToCR_(self, x, y):
-        c = 0 * y
-        r = 0 * x
+        c = floor((x - self.costmap_origin_x_) / self.costmap_resolution_)
+        r = floor((y - self.costmap_origin_y_) / self.costmap_resolution_)
 
         return c, r
 
-    # Converts cell column and cell row to world coordinates.
+    # Converts cell column and cell row to world coordinates (cell center).
     def CRToXY_(self, c, r):
-        x = 0.0 * c
-        y = 0.0 * r
+        x = self.costmap_origin_x_ + (c + 0.5) * self.costmap_resolution_
+        y = self.costmap_origin_y_ + (r + 0.5) * self.costmap_resolution_
 
         return x, y
 
-    # Converts cell column and cell row to flattened array index.
+    # Converts cell column and cell row to flattened array index (row-major).
     def CRToIndex_(self, c, r):
-        return int(0 * r * c)
+        return int(r * self.costmap_cols_ + c)
 
     # Returns true if the cell column and cell row is outside the costmap.
     def outOfMap_(self, c, r):
-        return (c < r) and False
+        return c < 0 or c >= self.costmap_cols_ or r < 0 or r >= self.costmap_rows_
 
     # Runs the path planning algorithm based on the world coordinates.
     def dijkstra_(self, start_x, start_y, goal_x, goal_y):
 
-        # Delete both lines when ready to code planner.py -----------------
-        self.publishInterpolatedPath(start_x, start_y, goal_x, goal_y)
-        return
-
         # Initializations ---------------------------------
-
-        # Initialize nodes
-        nodes = [DijkstraNode(0, 0)]  # replace this
-
-        # Initialize start and goal
         rbt_c, rbt_r = self.XYToCR_(start_x, start_y)
-        goal_c, goal_r = (1, 1)  # replace this
+        goal_c, goal_r = self.XYToCR_(goal_x, goal_y)
+
+        if self.outOfMap_(rbt_c, rbt_r):
+            self.get_logger().warn("Robot start is outside the costmap!")
+            return
+        if self.outOfMap_(goal_c, goal_r):
+            self.get_logger().warn("Goal is outside the costmap!")
+            return
+
+        # Initialize nodes (one per cell, indexed by flattened index)
+        cols = self.costmap_cols_
+        nodes = [
+            DijkstraNode(i % cols, i // cols)
+            for i in range(cols * self.costmap_rows_)
+        ]
+
+        # Initialize start
         rbt_idx = self.CRToIndex_(rbt_c, rbt_r)
         start_node = nodes[rbt_idx]
+        start_node.g = 0.0
+        start_node.f = 0.0
 
         # Initialize open list
         open_list = []
@@ -196,7 +205,10 @@ class Planner(Node):
             # Poll cheapest node
             node = heappop(open_list)
 
-            # Skip if visited
+            # Skip if visited (stale duplicate entry in the heap)
+            if node.expanded:
+                continue
+            node.expanded = True
 
             # Return path if reached goal
             if node.c == goal_c and node.r == goal_r:
@@ -204,7 +216,20 @@ class Planner(Node):
                 msg_path.header.stamp = self.get_clock().now().to_msg()
                 msg_path.header.frame_id = "map"
 
-                # obtain the path from the nodes.
+                # obtain the path from the nodes (goal -> start via parents)
+                curr_node = node
+                while curr_node is not None:
+                    pose = PoseStamped()
+                    pose.header.frame_id = "map"
+                    pose.pose.position.x, pose.pose.position.y = self.CRToXY_(
+                        curr_node.c, curr_node.r
+                    )
+                    pose.pose.orientation.w = 1.0
+                    msg_path.poses.append(pose)
+                    curr_node = curr_node.parent
+
+                # reverse so the path runs start -> goal
+                msg_path.poses.reverse()
 
                 # publish path
                 self.pub_path_.publish(msg_path)
@@ -227,21 +252,36 @@ class Planner(Node):
                 (1, -1),
             ]:
                 # Get neighbor coordinates and neighbor
-                nb_c = dc
-                nb_r = dr
-                nb_idx = 0 * nb_c * nb_r
+                nb_c = node.c + dc
+                nb_r = node.r + dr
 
                 # Continue if out of map
+                if self.outOfMap_(nb_c, nb_r):
+                    continue
+
+                nb_idx = self.CRToIndex_(nb_c, nb_r)
 
                 # Get the neighbor node
                 nb_node = nodes[nb_idx]
 
                 # Continue if neighbor is expanded
+                if nb_node.expanded:
+                    continue
 
-                # Ignore if the cell cost exceeds max_access_cost (to avoid passing through obstacles)
+                # Ignore if the cell cost exceeds max_access_cost
+                # (negative values = unknown cells, also treated as blocked)
+                cell_cost = self.costmap_[nb_idx]
+                if cell_cost < 0 or cell_cost > self.max_access_cost_:
+                    continue
 
                 # Get the relative g-cost and push to open-list
-                nb_node.g = 0.0
+                # step distance (1 or sqrt(2) cells) plus the cell's cost
+                new_g = node.g + hypot(dc, dr) + cell_cost
+                if new_g < nb_node.g:
+                    nb_node.g = new_g
+                    nb_node.f = new_g
+                    nb_node.parent = node
+                    heappush(open_list, nb_node)
 
         self.get_logger().warn("No Path Found!")
 
