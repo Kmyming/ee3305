@@ -68,7 +68,7 @@ class Behavior(Node):
         self.received_rbt_coords_ = True
 
         # !TODO: Copy to rbt_x_, rbt_y_.
-        self.rbt_x_ = msg.pose.pose.orientation.x
+        self.rbt_x_ = msg.pose.pose.position.x
         self.rbt_y_ = msg.pose.pose.position.y
 
     # Callback for timer.
