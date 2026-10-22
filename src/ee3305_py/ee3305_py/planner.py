@@ -13,7 +13,7 @@ from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import OccupancyGrid, Path
 
 
-class DijkstraNode:
+class ThetaStarNode:
     def __init__(self, c, r):
         self.parent = None
         self.f = inf
@@ -25,7 +25,7 @@ class DijkstraNode:
         self.checked = False
 
     def __lt__(self, other):  # comparator for heapq (min-heap) sorting
-        return self.g < other.g
+        return self.f < other.f
 
 
 class Planner(Node):
@@ -37,10 +37,12 @@ class Planner(Node):
         # Parameters: Declare
         self.declare_parameter("max_access_cost", int(100))
         self.declare_parameter("interpolation_step", 0.05)  # metres; <= 0 disables
+        self.declare_parameter("heuristic_weight", 1.0)
 
         # Parameters: Get Values
         self.max_access_cost_ = self.get_parameter("max_access_cost").value
         self.interp_step_ = self.get_parameter("interpolation_step").value
+        self.heuristic_weight_ = self.get_parameter("heuristic_weight").value
 
         # Handles: Topic Subscribers
         # Global costmap subscriber
@@ -112,43 +114,9 @@ class Planner(Node):
             return  # silently return if no new request or map is not received.
 
         # run the path planner
-        self.dijkstra_(self.rbt_x_, self.rbt_y_, self.goal_x_, self.goal_y_)
+        self.thetaStar_(self.rbt_x_, self.rbt_y_, self.goal_x_, self.goal_y_)
 
         self.has_new_request_ = False
-
-    # Publish the interpolated path for testing
-    def publishInterpolatedPath(self, start_x, start_y, goal_x, goal_y):
-        msg_path = Path()
-        msg_path.header.stamp = self.get_clock().now().to_msg()
-        msg_path.header.frame_id = "map"
-
-        dx = start_x - goal_x
-        dy = start_y - goal_y
-        distance = hypot(dx, dy)
-        steps = distance / 0.05
-
-        # Generate poses at every 0.05m
-        for i in range(int(steps)):
-            pose = PoseStamped()
-            pose.pose.position.x = goal_x + dx * i / steps
-            pose.pose.position.y = goal_y + dy * i / steps
-            msg_path.poses.append(pose)
-
-        # Add the goal pose
-        pose = PoseStamped()
-        pose.pose.position.x = goal_x
-        pose.pose.position.y = goal_y
-        msg_path.poses.append(pose)
-
-        # Reverse the path (hint)
-        msg_path.poses.reverse()
-
-        # publish the path
-        self.pub_path_.publish(msg_path)
-
-        self.get_logger().info(
-            f"Publishing interpolated path between Start and Goal. Implement dijkstra_() instead."
-        )
 
     # Converts world coordinates to cell column and cell row.
     def XYToCR_(self, x, y):
@@ -178,7 +146,14 @@ class Planner(Node):
             return False
         cost = self.costmap_[self.CRToIndex_(c, r)]
         return 0 <= cost <= self.max_access_cost_
-    
+
+    # Heuristic h(n): straight-line (Euclidean) distance in cells to the goal.
+    # Since Theta* allows any-angle moves, Euclidean distance is the tightest
+    # admissible heuristic: every path (grid or LOS) costs at least the straight-line
+    # distance (cell costs are non-negative), and it is consistent via the triangle inequality.
+    def heuristic_(self, c, r, goal_c, goal_r):
+        return self.heuristic_weight_ * hypot(goal_c - c, goal_r - r)
+
     # Walks a Bresenham line from (c0, r0) to (c1, r1).
     # Returns the summed cell cost along the line (excluding the start cell, including the end cell), or None if the line is blocked.
     def lineOfSight_(self, c0, r0, c1, r1):
@@ -260,8 +235,8 @@ class Planner(Node):
                 dense.append((x0 + (x1 - x0) * t, y0 + (y1 - y0) * t))
         return dense
 
-    # Runs the path planning algorithm based on the world coordinates.
-    def dijkstra_(self, start_x, start_y, goal_x, goal_y):
+    # Runs the Lazy Theta* path planning algorithm based on the world coordinates.
+    def thetaStar_(self, start_x, start_y, goal_x, goal_y):
 
         # Initializations ---------------------------------
         rbt_c, rbt_r = self.XYToCR_(start_x, start_y)
@@ -277,7 +252,7 @@ class Planner(Node):
         # Initialize nodes (one per cell, indexed by flattened index)
         cols = self.costmap_cols_
         nodes = [
-            DijkstraNode(i % cols, i // cols)
+            ThetaStarNode(i % cols, i // cols)
             for i in range(cols * self.costmap_rows_)
         ]
 
@@ -285,18 +260,19 @@ class Planner(Node):
         rbt_idx = self.CRToIndex_(rbt_c, rbt_r)
         start_node = nodes[rbt_idx]
         start_node.g = 0.0
-        start_node.f = 0.0
+        start_node.h = self.heuristic_(rbt_c, rbt_r, goal_c, goal_r)
+        start_node.f = start_node.g + start_node.h
         start_node.checked = True
 
-        # Initialize open list
+        # Initialize open list, ordered by f = g + h
         tie = count()
         open_list = []
-        heappush(open_list, (0.0, next(tie), start_node))
+        heappush(open_list, (start_node.f, next(tie), start_node))
 
         # Expansion Loop ---------------------------------
         while len(open_list) > 0:
 
-            # Poll cheapest node
+            # Poll node with the lowest f
             key, _, node = heappop(open_list)
 
             # Skip if visited
@@ -308,10 +284,11 @@ class Planner(Node):
                 if not self.setVertex_(node, nodes):
                     continue
                 node.checked = True
-                if node.g > key + 1e-9:
+                node.f = node.g + node.h
+                if node.f > key + 1e-9:
                     # True cost exceeded the optimistic estimate: re-queue at
                     # the corrected priority so expansion order stays correct.
-                    heappush(open_list, (node.g, next(tie), node))
+                    heappush(open_list, (node.f, next(tie), node))
                     continue
 
             node.expanded = True
@@ -391,7 +368,8 @@ class Planner(Node):
                 new_parent = node
 
                 # Path 1 (any-angle): reach neighbor directly from the current node's
-                # parent if there is line of sight. Take it if it is cheaper.
+                # parent (optimistically assuming LOS; validated lazily when popped).
+                # Take it if it is cheaper.
                 p = node.parent
                 if p is not None:
                     g_est = p.g + hypot(nb_c - p.c, nb_r - p.r) + cell_cost
@@ -400,10 +378,15 @@ class Planner(Node):
                         new_parent = p
 
                 if new_g < nb_node.g:
+                    # Compute h(n) only once per node, the first time it is reached
+                    if nb_node.h == inf:
+                        nb_node.h = self.heuristic_(nb_c, nb_r, goal_c, goal_r)
+
                     nb_node.g = new_g
+                    nb_node.f = new_g + nb_node.h
                     nb_node.parent = new_parent
                     nb_node.checked = False   # must be re-validated when popped
-                    heappush(open_list, (new_g, next(tie), nb_node))
+                    heappush(open_list, (nb_node.f, next(tie), nb_node))
 
         self.get_logger().warn("No Path Found!")
 
