@@ -1,5 +1,6 @@
 from heapq import heappush, heappop
 from math import hypot, floor, ceil, inf
+from itertools import count
 
 import rclpy
 from rclpy.node import Node
@@ -21,6 +22,7 @@ class DijkstraNode:
         self.c = c
         self.r = r
         self.expanded = False
+        self.checked = False
 
     def __lt__(self, other):  # comparator for heapq (min-heap) sorting
         return self.g < other.g
@@ -178,8 +180,7 @@ class Planner(Node):
         return 0 <= cost <= self.max_access_cost_
     
     # Walks a Bresenham line from (c0, r0) to (c1, r1).
-    # Returns the summed cell cost along the line (excluding the start cell,
-    # including the end cell), or None if the line is blocked.
+    # Returns the summed cell cost along the line (excluding the start cell, including the end cell), or None if the line is blocked.
     def lineOfSight_(self, c0, r0, c1, r1):
         dc = abs(c1 - c0)
         dr = abs(r1 - r0)
@@ -211,10 +212,41 @@ class Planner(Node):
             total += self.costmap_[self.CRToIndex_(c, r)]
 
         return total
-    
-    # Densifies a start->goal list of (x, y) waypoints so that consecutive points
-    # are at most interp_step_ metres apart. Each segment is split evenly, so the
-    # original waypoints are preserved exactly and no spacing is wasted at corners.
+
+    # Lazy LOS: called when a node is popped. Validates the optimistic parent and picks the cheapest valid parent among:
+    #   (a) the current parent, if it truly has line of sight (true LOS cost)
+    #   (b) any already-expanded 8-neighbour (plain grid step)
+    # Returns False if no valid parent exists.
+    def setVertex_(self, node, nodes):
+        cell_cost = self.costmap_[self.CRToIndex_(node.c, node.r)]
+        best_g, best_p = inf, None
+
+        p = node.parent
+        if p is not None:
+            los = self.lineOfSight_(p.c, p.r, node.c, node.r)
+            if los is not None:
+                best_g = p.g + hypot(node.c - p.c, node.r - p.r) + los
+                best_p = p
+
+        for dc, dr in [(1, 0), (1, 1), (0, 1), (-1, 1),
+                       (-1, 0), (-1, -1), (0, -1), (1, -1)]:
+            nb_c, nb_r = node.c + dc, node.r + dr
+            if self.outOfMap_(nb_c, nb_r):
+                continue
+            nb = nodes[self.CRToIndex_(nb_c, nb_r)]
+            if not nb.expanded:
+                continue
+            g = nb.g + hypot(dc, dr) + cell_cost
+            if g < best_g:
+                best_g, best_p = g, nb
+
+        if best_p is None:
+            return False
+        node.g = best_g
+        node.parent = best_p
+        return True
+
+    # Interpolated waypoints on LOS path to allow controller to have consistent lookahead points
     def interpolatePath_(self, waypoints):
         step = self.interp_step_
         if step <= 0 or len(waypoints) < 2:
@@ -254,20 +286,34 @@ class Planner(Node):
         start_node = nodes[rbt_idx]
         start_node.g = 0.0
         start_node.f = 0.0
+        start_node.checked = True
 
         # Initialize open list
+        tie = count()
         open_list = []
-        heappush(open_list, start_node)
+        heappush(open_list, (0.0, next(tie), start_node))
 
         # Expansion Loop ---------------------------------
         while len(open_list) > 0:
 
             # Poll cheapest node
-            node = heappop(open_list)
+            key, _, node = heappop(open_list)
 
             # Skip if visited
             if node.expanded:
                 continue
+
+            # --- Lazy LOS check on expansion ---
+            if not node.checked:
+                if not self.setVertex_(node, nodes):
+                    continue
+                node.checked = True
+                if node.g > key + 1e-9:
+                    # True cost exceeded the optimistic estimate: re-queue at
+                    # the corrected priority so expansion order stays correct.
+                    heappush(open_list, (node.g, next(tie), node))
+                    continue
+
             node.expanded = True
 
             # Return path if reached goal
@@ -348,18 +394,16 @@ class Planner(Node):
                 # parent if there is line of sight. Take it if it is cheaper.
                 p = node.parent
                 if p is not None:
-                    los = self.lineOfSight_(p.c, p.r, nb_c, nb_r)
-                    if los is not None:
-                        g_los = p.g + hypot(nb_c - p.c, nb_r - p.r) + los
-                        if g_los < new_g:
-                            new_g = g_los
-                            new_parent = p
-                            
+                    g_est = p.g + hypot(nb_c - p.c, nb_r - p.r) + cell_cost
+                    if g_est < new_g:
+                        new_g = g_est
+                        new_parent = p
+
                 if new_g < nb_node.g:
                     nb_node.g = new_g
-                    nb_node.f = new_g
                     nb_node.parent = new_parent
-                    heappush(open_list, nb_node)
+                    nb_node.checked = False   # must be re-validated when popped
+                    heappush(open_list, (new_g, next(tie), nb_node))
 
         self.get_logger().warn("No Path Found!")
 
