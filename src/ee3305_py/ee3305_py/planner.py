@@ -168,6 +168,48 @@ class Planner(Node):
     def outOfMap_(self, c, r):
         return c < 0 or c >= self.costmap_cols_ or r < 0 or r >= self.costmap_rows_
 
+    # Returns true if the cell is inside the map, known, and not above max_access_cost.
+    def isFree_(self, c, r):
+        if self.outOfMap_(c, r):
+            return False
+        cost = self.costmap_[self.CRToIndex_(c, r)]
+        return 0 <= cost <= self.max_access_cost_
+    
+    # Walks a Bresenham line from (c0, r0) to (c1, r1).
+    # Returns the summed cell cost along the line (excluding the start cell,
+    # including the end cell), or None if the line is blocked.
+    def lineOfSight_(self, c0, r0, c1, r1):
+        dc = abs(c1 - c0)
+        dr = abs(r1 - r0)
+        sc = 1 if c1 > c0 else -1
+        sr = 1 if r1 > r0 else -1
+        err = dc - dr
+        c, r = c0, r0
+        total = 0.0
+
+        while c != c1 or r != r1:
+            e2 = 2 * err
+            step_c = e2 > -dr
+            step_r = e2 < dc
+
+            # Diagonal step: don't squeeze between two blocked corner cells
+            if step_c and step_r:
+                if not self.isFree_(c + sc, r) or not self.isFree_(c, r + sr):
+                    return None
+
+            if step_c:
+                err -= dr
+                c += sc
+            if step_r:
+                err += dc
+                r += sr
+
+            if not self.isFree_(c, r):
+                return None
+            total += self.costmap_[self.CRToIndex_(c, r)]
+
+        return total
+    
     # Runs the path planning algorithm based on the world coordinates.
     def dijkstra_(self, start_x, start_y, goal_x, goal_y):
 
@@ -205,7 +247,7 @@ class Planner(Node):
             # Poll cheapest node
             node = heappop(open_list)
 
-            # Skip if visited (stale duplicate entry in the heap)
+            # Skip if visited
             if node.expanded:
                 continue
             node.expanded = True
@@ -216,7 +258,7 @@ class Planner(Node):
                 msg_path.header.stamp = self.get_clock().now().to_msg()
                 msg_path.header.frame_id = "map"
 
-                # obtain the path from the nodes (goal -> start via parents)
+                # obtain the path from the nodes
                 curr_node = node
                 while curr_node is not None:
                     pose = PoseStamped()
@@ -268,19 +310,31 @@ class Planner(Node):
                 if nb_node.expanded:
                     continue
 
-                # Ignore if the cell cost exceeds max_access_cost
+                # Ignore if the cell cost exceeds max_access_cost (to avoid passing through obstacles)
                 # (negative values = unknown cells, also treated as blocked)
                 cell_cost = self.costmap_[nb_idx]
                 if cell_cost < 0 or cell_cost > self.max_access_cost_:
                     continue
 
-                # Get the relative g-cost and push to open-list
-                # step distance (1 or sqrt(2) cells) plus the cell's cost
+                # Path 2 (grid): reach neighbor through the current node
                 new_g = node.g + hypot(dc, dr) + cell_cost
+                new_parent = node
+
+                # Path 1 (any-angle): reach neighbor directly from the current node's
+                # parent if there is line of sight. Take it if it is cheaper.
+                p = node.parent
+                if p is not None:
+                    los = self.lineOfSight_(p.c, p.r, nb_c, nb_r)
+                    if los is not None:
+                        g_los = p.g + hypot(nb_c - p.c, nb_r - p.r) + los
+                        if g_los < new_g:
+                            new_g = g_los
+                            new_parent = p
+                            
                 if new_g < nb_node.g:
                     nb_node.g = new_g
                     nb_node.f = new_g
-                    nb_node.parent = node
+                    nb_node.parent = new_parent
                     heappush(open_list, nb_node)
 
         self.get_logger().warn("No Path Found!")
