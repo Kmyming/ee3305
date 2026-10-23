@@ -23,6 +23,7 @@ setup(
             'behavior = ee3305_py.behavior:main',
             'planner = ee3305_py.planner:main',
             'controller = ee3305_py.controller:main',
+            'evaluator = ee3305_py.evaluator:main'
         ],
     },
 )
