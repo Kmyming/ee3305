@@ -14,7 +14,7 @@ from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import OccupancyGrid, Path
 
 
-class ThetaStarNode:
+class AStarNode:
     def __init__(self, c, r):
         self.parent = None
         self.f = inf
@@ -41,6 +41,7 @@ class Planner(Node):
         self.declare_parameter("heuristic_weight", 1.0)
         self.declare_parameter("smoothing_window", 0.6)     # metres; <= 0 disables SG smoothing
         self.declare_parameter("smoothing_polyorder", 3)
+        self.declare_parameter("algorithm", "dijkstra")     # dijkstra | anyangle | astar | thetastar
 
         # Parameters: Get Values
         self.max_access_cost_ = self.get_parameter("max_access_cost").value
@@ -48,6 +49,14 @@ class Planner(Node):
         self.heuristic_weight_ = self.get_parameter("heuristic_weight").value
         self.smooth_window_ = self.get_parameter("smoothing_window").value
         self.smooth_order_ = self.get_parameter("smoothing_polyorder").value
+        # For switching modes: Dijkstra, Any-angle Dijkstra, Theta*
+        self.algorithm_ = self.get_parameter("algorithm").value
+        if self.algorithm_ not in ("dijkstra", "anyangle", "astar", "thetastar"):
+            self.get_logger().warn(f"Unknown algorithm '{self.algorithm_}', using dijkstra.")
+            self.algorithm_ = "dijkstra"
+
+        self.use_LOS_ = self.algorithm_ in ("anyangle", "thetastar")
+        self.use_h_ = self.algorithm_ in ("thetastar", "astar")
 
         # Handles: Topic Subscribers
         # Global costmap subscriber
@@ -157,7 +166,9 @@ class Planner(Node):
     # admissible heuristic: every path (grid or LOS) costs at least the straight-line
     # distance (cell costs are non-negative), and it is consistent via the triangle inequality.
     def heuristic_(self, c, r, goal_c, goal_r):
-        return self.heuristic_weight_ * hypot(goal_c - c, goal_r - r)
+        if self.use_h_:     # if Theta* mode, then heuristics
+            return self.heuristic_weight_ * hypot(goal_c - c, goal_r - r)
+        return 0.0          # base has no heuristics
 
     # Walks a Bresenham line from (c0, r0) to (c1, r1).
     # Returns the summed cell cost along the line (excluding the start cell, including the end cell), or None if the line is blocked.
@@ -330,7 +341,7 @@ class Planner(Node):
         # Initialize nodes (one per cell, indexed by flattened index)
         cols = self.costmap_cols_
         nodes = [
-            ThetaStarNode(i % cols, i // cols)
+            AStarNode(i % cols, i // cols)
             for i in range(cols * self.costmap_rows_)
         ]
 
@@ -452,7 +463,7 @@ class Planner(Node):
                 # parent (optimistically assuming LOS; validated lazily when popped).
                 # Take it if it is cheaper.
                 p = node.parent
-                if p is not None:
+                if p is not None and self.use_LOS_:
                     g_est = p.g + hypot(nb_c - p.c, nb_r - p.r) + cell_cost
                     if g_est < new_g:
                         new_g = g_est
@@ -466,7 +477,7 @@ class Planner(Node):
                     nb_node.g = new_g
                     nb_node.f = new_g + nb_node.h
                     nb_node.parent = new_parent
-                    nb_node.checked = False   # must be re-validated when popped
+                    nb_node.checked = not self.use_LOS_
                     heappush(open_list, (nb_node.f, next(tie), nb_node))
 
         self.get_logger().warn("No Path Found!")
