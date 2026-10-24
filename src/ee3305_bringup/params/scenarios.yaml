@@ -1,0 +1,10 @@
+# Test scenarios for evaluation. All runs start at the spawn point.
+# The map frame is fixed at spawn (no localisation), so the spawn must not change.
+spawn: {x: 0.0, y: 0.0, yaw: 0.0} # [m, m, rad] map frame, facing +x
+
+scenarios:
+  S1: {goal: [-4.9, -2.1], timeout: 210.0, purpose: "Longest route: narrow gap by the post, across room A, through the doorway into the bottom-left room"}
+  S2: {goal: [5.3, 1.6], timeout: 120.0, purpose: "Narrow gap by the post, then two 90-degree turns into the right room"}
+  S3: {goal: [8.2, -3.8], timeout: 180.0, purpose: "Long route through two doorways into the bottom-right room"}
+  S4: {goal: [-2.1, 4.3], timeout: 150.0, purpose: "Narrow gap by the post, then between the table legs to the far corner of room A"}
+  S5: {goal: [-2.0, -0.3], timeout: 60.0, purpose: "Goal behind the robot"}
