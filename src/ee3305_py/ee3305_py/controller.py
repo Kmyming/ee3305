@@ -1,4 +1,4 @@
-from math import hypot, atan2, inf, cos, sin, radians
+from math import hypot, atan2, inf, cos, sin, radians, isfinite
 
 import rclpy
 from rclpy.node import Node
@@ -37,6 +37,16 @@ class Controller(Node):
         self.rotate_kp_ = 1.0
         self.path_heading_sample_distance_ = 0.25
 
+        # Regulated Pure Pursuit (RPP) settings
+        self.curvature_threshold_ = 2.0 # Curvature heuristic
+        self.regulated_min_lin_vel_ = 0.05 # Curvature/Proximity heuristic
+        self.proximity_slowdown_distance_ = 0.80 # Proximity heuristic settings
+        self.proximity_min_distance_ = 0.20 # Proximity heuristic settings
+        self.current_lookahead_distance_ = self.lookahead_distance_ # Adaptive Lookahead settings
+        self.lookahead_time_ = 1.5 # Adaptive Lookahead settings
+        self.min_lookahead_distance_ = self.lookahead_distance_/2 # Adaptive Lookahead settings
+        self.max_lookahead_distance_ = self.lookahead_distance_ # Adaptive Lookahead settings
+
         # Handles: Topic Subscribers
         # We can use ros2 topic list to find all the available topic names
         # !TODO: path subscriber
@@ -44,6 +54,10 @@ class Controller(Node):
         
         # !TODO: odometry subscriber
         self.sub_odometry_ = self.create_subscription(Odometry, "odom", self.callbackSubOdom_, qos_profile_sensor_data)
+
+        # RPP Proximity heuristic implementation
+        # LaserScan subscriber
+        self.sub_scan_ = self.create_subscription(LaserScan, "scan", self.callbackSubScan_, qos_profile_sensor_data)
 
         # Handles: Topic Publishers
         # !TODO: command velocities publisher
@@ -58,8 +72,12 @@ class Controller(Node):
         # Other Instance Variables
         self.received_odom_ = False
         self.received_path_ = False
+        self.scan_ = None # RPP Proximity heuristic
 
     # Callbacks =============================================================
+    # LaserScan subscriber callback
+    def callbackSubScan_(self, msg: LaserScan):
+        self.scan_ = msg
     
     # Path subscriber callback
     # ros2 interface show nav_msgs/msg/Path
@@ -85,6 +103,48 @@ class Controller(Node):
 
         self.received_odom_ = True
 
+    # RPP Proximity heuristic: Get the nearest obstacle distance in front of the robot
+    def getFrontObstacleDistance_(self):
+        if self.scan_ is None:
+            return None
+
+        front_ranges = list()
+        no_return_detected = False
+
+        for i, distance in enumerate(self.scan_.ranges):
+            angle = self.scan_.angle_min + i * self.scan_.angle_increment
+            is_front = (0 <= angle <= radians(30) or radians(330) <= angle < radians(360)) # Front defined as angle within +/-30 degrees
+
+            if is_front and distance == float('inf'):
+                no_return_detected = True
+
+            # Filtering invalid LiDAR measurements:
+            # Check whether angle is within the front +/-30 degrees, finite obstacle distance, and distance within range min and max
+            if (is_front
+                and isfinite(distance)
+                and self.scan_.range_min <= distance <= self.scan_.range_max):
+                front_ranges.append(distance) # If true, add distance to front_ranges
+
+        if front_ranges: return min(front_ranges) # Valid distances detected
+        if no_return_detected: return float('inf')
+        return None # No distances in front_ranges
+
+    # RPP Proximity heuristic: Regulate velocity based on obstacle distance
+    def getProximityRegulatedVelocity_(self, front_distance, lin_vel):
+        if front_distance is None or (front_distance >= self.proximity_slowdown_distance_):
+            return lin_vel  # Skip proximity regulation, maintain normal speed
+
+        elif front_distance <= self.proximity_min_distance_:
+            return min(lin_vel, self.regulated_min_lin_vel_)
+
+        else:
+            # Calculate interpolation factor f
+            f = (front_distance - self.proximity_min_distance_)/(self.proximity_slowdown_distance_ - self.proximity_min_distance_)
+            # Calculate proximity-regulated velocity
+            v_prox = self.regulated_min_lin_vel_ + f*(lin_vel - self.regulated_min_lin_vel_)
+            # Return the smaller of the current and regulated velocities
+            return min(v_prox, lin_vel)
+
     # Get the the closest path index for lookahead point
     def getClosestPathIndex_(self):
         # Find the point along the path that is closest to the robot
@@ -98,7 +158,6 @@ class Controller(Node):
             )
 
         return distance_list.index(min(distance_list))
-
 
     # Get the path heading for rotation to heading behaviour
     def getPathHeading_(self):
@@ -126,7 +185,6 @@ class Controller(Node):
                 next_pose.pose.position.x - current_pose.pose.position.x,
                 next_pose.pose.position.y - current_pose.pose.position.y
             )
-
             accumulated_distance += segment_distance  # Add this segment length to accumulated_distance
             end_idx += 1  # Increment end_idx by 1
 
@@ -151,7 +209,7 @@ class Controller(Node):
         for point in range(closest_idx, len(self.path_poses_)):
             pose = self.path_poses_[point]
             distance = hypot(pose.pose.position.x - self.rbt_x_, pose.pose.position.y - self.rbt_y_)
-            if distance >= self.lookahead_distance_:
+            if distance >= self.current_lookahead_distance_: # Adaptive lookahead distance according to regulated linear velocity
                 lookahead_idx = point # We want the first point only
                 break # Break after we get the first point
 
@@ -227,7 +285,21 @@ class Controller(Node):
                     # calculate velocities
                     lin_vel = self.lookahead_lin_vel_  # Value is a constant chosen by user
                     lin_vel = min(lin_vel, self.max_lin_vel_)  # Adhere to maximum speed
+
+                    # Curvature heauristic implementation (RPP)
+                    if abs(curvature) > self.curvature_threshold_: # If the current curvature exceeds the threshold...
+                        # Reduce linear velocity based on curvature
+                        # Ensure velocity does not fall below the regulated minimum
+                        lin_vel = max(self.regulated_min_lin_vel_, lin_vel * (self.curvature_threshold_/abs(curvature)))
+
+                    # Proximity heuristic implementation (RPP)
+                    front_distance = self.getFrontObstacleDistance_()
+                    lin_vel = self.getProximityRegulatedVelocity_(front_distance, lin_vel)
+
                     ang_vel = curvature * lin_vel  # w(k) = c(k)*v(t)
+
+                    # Adaptive Lookahead implementation (RPP)
+                    self.current_lookahead_distance_ = max(self.min_lookahead_distance_, min(self.lookahead_time_ * lin_vel, self.max_lookahead_distance_))
 
         # saturate velocities. The following can result in the wrong curvature,
         # but only when the robot is travelling too fast (which should not occur if well tuned).
@@ -241,7 +313,6 @@ class Controller(Node):
         msg_cmd_vel.twist.linear.x = lin_vel
         msg_cmd_vel.twist.angular.z = ang_vel
         self.pub_cmd_vel_.publish(msg_cmd_vel)
-
 
 # Main Boiler Plate =============================================================
 def main(args=None):
