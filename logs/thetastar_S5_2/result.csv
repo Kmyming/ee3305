@@ -1,0 +1,2 @@
+config,scenario,run,result,elapsed,distance,goal_x,goal_y,timeout,goal_tol
+thetastar,S5,2,reached,11.5,0.14568286713343073,-2.0,-0.3,60.0,0.15
