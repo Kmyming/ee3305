@@ -21,6 +21,7 @@ class Controller(Node):
         self.declare_parameter("stop_thres", float(0.1))
         self.declare_parameter("max_lin_vel", float(0.2))
         self.declare_parameter("max_ang_vel", float(2.0))
+        self.declare_parameter("controller_mode", "baseline_pp")
 
         # Parameters: Get Values
         self.frequency_ = self.get_parameter("frequency").value
@@ -29,6 +30,18 @@ class Controller(Node):
         self.stop_thres_ = self.get_parameter("stop_thres").value
         self.max_lin_vel_ = self.get_parameter("max_lin_vel").value
         self.max_ang_vel_ = self.get_parameter("max_ang_vel").value
+        self.controller_mode_ = self.get_parameter("controller_mode").value
+
+        # Controller mode selection
+        valid_modes = ("baseline_pp", "rotate_pp", "rpp")
+
+        if self.controller_mode_ not in valid_modes:
+            self.get_logger().warn(
+                f"Invalid controller mode '{self.controller_mode_}'. "
+                f"Defaulting to 'baseline_pp'.")
+            self.controller_mode_ = "baseline_pp"
+
+        self.get_logger().info(f"Selected Controller Mode: {self.controller_mode_}")
 
         # Rotate-to-Heading settings
         self.rotating_ = False
@@ -253,23 +266,27 @@ class Controller(Node):
             delta_x = lookahead_x - self.rbt_x_ # Target point from robot (x-direction)
             delta_y = lookahead_y - self.rbt_y_ # Target point from robot (y-direction)
 
-            # Calculate the heading error between the robot and the planned path
-            target_heading = self.getPathHeading_()
-
             # Rotate-to-Heading behaviour
-            if target_heading is None:
+            if self.controller_mode_ == "baseline_pp":
                 self.rotating_ = False # Fallback to normal pursuit
-            else: # targetheading is not None
-                alpha = target_heading - self.rbt_yaw_
-                norm_alpha = atan2(sin(alpha), cos(alpha))
+            else: # rotate_pp or rpp
+                # Calculate the heading error between the robot and the planned path
+                target_heading = self.getPathHeading_()
 
-                # Enter rotation mode
-                if not self.rotating_ and abs(norm_alpha) > self.rotate_enter_threshold_:
-                    self.rotating_ = True
-
-                # Exit rotation mode
-                elif self.rotating_ and abs(norm_alpha) < self.rotate_exit_threshold_:
+                if target_heading is None:
                     self.rotating_ = False
+
+                else:
+                    alpha = target_heading - self.rbt_yaw_
+                    norm_alpha = atan2(sin(alpha), cos(alpha))
+
+                    # Enter rotation mode
+                    if not self.rotating_ and abs(norm_alpha) > self.rotate_enter_threshold_:
+                        self.rotating_ = True
+
+                    # Exit rotation mode
+                    elif self.rotating_ and abs(norm_alpha) < self.rotate_exit_threshold_:
+                        self.rotating_ = False
 
             if self.rotating_: # Rotate in place
                 lin_vel = 0.0
@@ -286,20 +303,26 @@ class Controller(Node):
                     lin_vel = self.lookahead_lin_vel_  # Value is a constant chosen by user
                     lin_vel = min(lin_vel, self.max_lin_vel_)  # Adhere to maximum speed
 
-                    # Curvature heauristic implementation (RPP)
-                    if abs(curvature) > self.curvature_threshold_: # If the current curvature exceeds the threshold...
-                        # Reduce linear velocity based on curvature
-                        # Ensure velocity does not fall below the regulated minimum
-                        lin_vel = max(self.regulated_min_lin_vel_, lin_vel * (self.curvature_threshold_/abs(curvature)))
+                    # Regulated Pure Pursuit (RPP) heuristics
+                    if self.controller_mode_ == "rpp":
+                        # Curvature heauristic implementation (RPP)
+                        if abs(curvature) > self.curvature_threshold_: # If the current curvature exceeds the threshold...
+                            # Reduce linear velocity based on curvature
+                            # Ensure velocity does not fall below the regulated minimum
+                            lin_vel = max(self.regulated_min_lin_vel_, lin_vel * (self.curvature_threshold_/abs(curvature)))
 
-                    # Proximity heuristic implementation (RPP)
-                    front_distance = self.getFrontObstacleDistance_()
-                    lin_vel = self.getProximityRegulatedVelocity_(front_distance, lin_vel)
+                        # Proximity heuristic implementation (RPP)
+                        front_distance = self.getFrontObstacleDistance_()
+                        lin_vel = self.getProximityRegulatedVelocity_(front_distance, lin_vel)
 
+                    # Calculate angular velocity
                     ang_vel = curvature * lin_vel  # w(k) = c(k)*v(t)
 
                     # Adaptive Lookahead implementation (RPP)
-                    self.current_lookahead_distance_ = max(self.min_lookahead_distance_, min(self.lookahead_time_ * lin_vel, self.max_lookahead_distance_))
+                    if self.controller_mode_ == "rpp":
+                        self.current_lookahead_distance_ = max(self.min_lookahead_distance_, min(self.lookahead_time_ * lin_vel, self.max_lookahead_distance_))
+                    else: # Maintain fixed lookahead for baseline_pp and rotate_pp
+                        self.current_lookahead_distance_ = self.lookahead_distance_
 
         # saturate velocities. The following can result in the wrong curvature,
         # but only when the robot is travelling too fast (which should not occur if well tuned).
