@@ -5,8 +5,9 @@ behavior:
 
 controller:
   ros__parameters:
+    controller_mode: "baseline_pp" # baseline_pp | rotate_pp | rpp
     frequency: 20.0 # {double} [Hz]
-    lookahead_distance: 0.1 # {double} [m]
+    lookahead_distance: 0.3 # {double} [m]
     lookahead_lin_vel: 0.2 # {double} [m/s]
     stop_thres: 0.1 # {double} [m]
     max_lin_vel: 0.2 # {double} [m/s]
