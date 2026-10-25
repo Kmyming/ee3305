@@ -1,0 +1,218 @@
+[INFO] [launch]: All log files can be found below /home/tim/.ros/log/2026-10-24-23-34-56-378024-rosgoat-13684
+[INFO] [launch]: Default logging verbosity is set to INFO
+urdf_file_name : turtlebot3_burger.urdf
+urdf_file_name : turtlebot3_burger.urdf
+urdf_file_name : turtlebot3_burger.urdf
+urdf_file_name : turtlebot3_burger.urdf
+[INFO] [behavior-8]: process started with pid [13719]
+[INFO] [controller-9]: process started with pid [13720]
+[INFO] [planner-10]: process started with pid [13723]
+[INFO] [gazebo-1]: process started with pid [13709]
+[INFO] [robot_state_publisher-2]: process started with pid [13710]
+[INFO] [create-3]: process started with pid [13712]
+[INFO] [parameter_bridge-4]: process started with pid [13713]
+[INFO] [map_loader-5]: process started with pid [13714]
+[INFO] [rviz2-6]: process started with pid [13715]
+[INFO] [static_transform_publisher-7]: process started with pid [13716]
+[static_transform_publisher-7] [WARN] [1792856096.772327053] []: Old-style arguments are deprecated; see --help for new-style arguments
+[robot_state_publisher-2] [INFO] [1792856096.803464741] [robot_state_publisher]: Robot initialized
+[create-3] [INFO] [1792856096.860478039] [ros_gz_sim]: Requesting list of world names.
+[map_loader-5] [INFO] [1792856096.862117059] [map_loader]: [Parameter] max_cost: {"name": "max_cost", "type": "integer", "value": "99"}
+[map_loader-5] [INFO] [1792856096.862223322] [map_loader]: [Parameter] min_cost: {"name": "min_cost", "type": "integer", "value": "0"}
+[map_loader-5] [INFO] [1792856096.862297829] [map_loader]: [Parameter] inflation_radius: {"name": "inflation_radius", "type": "double", "value": "0.800000"}
+[map_loader-5] [INFO] [1792856096.862345172] [map_loader]: [Parameter] circumscribed_radius: {"name": "circumscribed_radius", "type": "double", "value": "0.200000"}
+[map_loader-5] [INFO] [1792856096.862375174] [map_loader]: [Parameter] cost_exponent: {"name": "cost_exponent", "type": "double", "value": "8.000000"}
+[map_loader-5] [INFO] [1792856096.862408153] [map_loader]: [Parameter] topic_map: {"name": "topic_map", "type": "string", "value": "/map"}
+[map_loader-5] [INFO] [1792856096.862452638] [map_loader]: [Parameter] topic_global_costmap: {"name": "topic_global_costmap", "type": "string", "value": "/global_costmap"}
+[map_loader-5] [INFO] [1792856096.862498345] [map_loader]: [Parameter] filepath: {"name": "filepath", "type": "string", "value": "/home/tim/ee3305/install/ee3305_bringup/share/ee3305_bringup/maps/ee3305"}
+[map_loader-5] [INFO] [1792856096.862542086] [map_loader]: [Parameter] frame_id: {"name": "frame_id", "type": "string", "value": "/map"}
+[map_loader-5] [INFO] [1792856096.877379751] [map_loader]: Published occupancy grid to /map
+[static_transform_publisher-7] [INFO] [1792856096.891428032] [static_transform_publisher]: Spinning until stopped - publishing transform
+[static_transform_publisher-7] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-7] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-7] from '/map' to '/odom'
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/world[@name="default"]/gui/camera[@name="user_camera"]/pose[@frame=""]:/home/tim/ee3305/install/ee3305_bringup/share/ee3305_bringup/worlds/turtlebot3_house.world:L10]: XML Attribute[frame] in element[pose] not defined in SDF.
+[rviz2-6] [INFO] [1792856097.341207314] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-6] [INFO] [1792856097.341790362] [rviz2]: OpenGl version: 4.3 (GLSL 4.3)
+[map_loader-5] [INFO] [1792856097.386702601] [map_loader]: Published global costmap to /global_costmap
+[rviz2-6] [INFO] [1792856097.391783288] [rviz2]: Stereo is NOT SUPPORTED
+[create-3] [INFO] [1792856097.781656974] [ros_gz_sim]: Entity creation successful.
+[parameter_bridge-4] [INFO] [1792856097.847201318] [ros_gz_bridge]: Creating GZ->ROS Bridge: [clock (gz.msgs.Clock) -> clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792856097.849684647] [ros_gz_bridge]: Creating GZ->ROS Bridge: [joint_states (gz.msgs.Model) -> joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792856097.853338143] [ros_gz_bridge]: Creating GZ->ROS Bridge: [odom (gz.msgs.Odometry) -> odom (nav_msgs/msg/Odometry)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792856097.859528222] [ros_gz_bridge]: Creating GZ->ROS Bridge: [tf (gz.msgs.Pose_V) -> tf (tf2_msgs/msg/TFMessage)] (Lazy 0)
+[rviz2-6] [INFO] [1792856097.861462133] [rviz2]: Trying to create a map of size 317 x 225 using 1 swatches
+[parameter_bridge-4] [INFO] [1792856097.862623381] [ros_gz_bridge]: Creating ROS->GZ Bridge: [cmd_vel (geometry_msgs/msg/TwistStamped) -> cmd_vel (gz.msgs.Twist)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792856097.863969118] [ros_gz_bridge]: Creating GZ->ROS Bridge: [imu (gz.msgs.IMU) -> imu (sensor_msgs/msg/Imu)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792856097.864846636] [ros_gz_bridge]: Creating GZ->ROS Bridge: [scan (gz.msgs.LaserScan) -> scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[rviz2-6] [ERROR] [1792856097.868518657] [rviz2]: rviz/glsl120/indexed_8bit_image.vert
+[rviz2-6] rviz/glsl120/indexed_8bit_image.frag
+[rviz2-6]  GLSL link result : 
+[rviz2-6] active samplers with a different type refer to the same texture image unit
+[rviz2-6] [INFO] [1792856097.871147855] [rviz2]: Trying to create a map of size 317 x 225 using 1 swatches
+[INFO] [create-3]: process has finished cleanly [pid 13712]
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="turtlebot3_burger"]/link[@name="base_scan"]/sensor[@name="hls_lfcd_lds"]/gz_frame_id:/opt/ros/jazzy/share/turtlebot3_gazebo/models/turtlebot3_burger/model.sdf:L141]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gazebo-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mWood_Floor_Dark.jpg[0m[1;31m][0m[1;31m[0m
+[gazebo-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mMaple.jpg[0m[1;31m][0m[1;31m[0m
+[behavior-8] [0m[INFO] [1792856100.479318566] [behavior]: Received New Goal @ ( -2.000,  -0.300).[0m
+[planner-10] [0m[INFO] [1792856100.546147330] [planner]: Costmap received: 317 x 225 cells, 0.05000000074505806 m per cell[0m
+[behavior-8] [0m[INFO] [1792856100.570366363] [behavior]: Going to Goal @ ( -2.000,  -0.300).[0m
+[behavior-8] [0m[INFO] [1792856100.670066747] [behavior]: Sending Path Planning Request from Rbt @ (  0.000,  -0.000) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856100.779683216] [planner]: Path Found from Rbt @ (  0.000,  -0.000) to Goal @ ( -2.000, -0.300)[0m
+[parameter_bridge-4] [INFO] [1792856100.798840187] [ros_gz_bridge]: Passing message from ROS geometry_msgs/msg/TwistStamped to Gazebo gz.msgs.Twist (showing msg only once per type)
+[behavior-8] [0m[INFO] [1792856101.170207445] [behavior]: Sending Path Planning Request from Rbt @ (  0.045,  -0.020) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856101.289499022] [planner]: Path Found from Rbt @ (  0.045,  -0.020) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856101.670258463] [behavior]: Sending Path Planning Request from Rbt @ (  0.083,  -0.108) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856101.771841620] [planner]: Path Found from Rbt @ (  0.083,  -0.108) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856102.169936860] [behavior]: Sending Path Planning Request from Rbt @ (  0.035,  -0.193) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856102.276842021] [planner]: Path Found from Rbt @ (  0.035,  -0.193) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856102.670394038] [behavior]: Sending Path Planning Request from Rbt @ ( -0.049,  -0.247) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856102.775098918] [planner]: Path Found from Rbt @ ( -0.049,  -0.247) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856103.169803641] [behavior]: Sending Path Planning Request from Rbt @ ( -0.147,  -0.262) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856103.276027822] [planner]: Path Found from Rbt @ ( -0.147,  -0.262) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856103.669791114] [behavior]: Sending Path Planning Request from Rbt @ ( -0.247,  -0.260) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856103.775055411] [planner]: Path Found from Rbt @ ( -0.247,  -0.260) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856104.169868206] [behavior]: Sending Path Planning Request from Rbt @ ( -0.347,  -0.257) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856104.258027493] [planner]: Path Found from Rbt @ ( -0.347,  -0.257) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856104.670468670] [behavior]: Sending Path Planning Request from Rbt @ ( -0.447,  -0.256) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856104.766469021] [planner]: Path Found from Rbt @ ( -0.447,  -0.256) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856105.169869133] [behavior]: Sending Path Planning Request from Rbt @ ( -0.547,  -0.256) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856105.266359832] [planner]: Path Found from Rbt @ ( -0.547,  -0.256) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856105.670354603] [behavior]: Sending Path Planning Request from Rbt @ ( -0.647,  -0.256) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856105.771411072] [planner]: Path Found from Rbt @ ( -0.647,  -0.256) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856106.170489817] [behavior]: Sending Path Planning Request from Rbt @ ( -0.747,  -0.256) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856106.254553901] [planner]: Path Found from Rbt @ ( -0.747,  -0.256) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856106.670727893] [behavior]: Sending Path Planning Request from Rbt @ ( -0.847,  -0.256) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856106.768377645] [planner]: Path Found from Rbt @ ( -0.847,  -0.256) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856107.169785950] [behavior]: Sending Path Planning Request from Rbt @ ( -0.947,  -0.256) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856107.269094058] [planner]: Path Found from Rbt @ ( -0.947,  -0.256) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856107.670172145] [behavior]: Sending Path Planning Request from Rbt @ ( -1.047,  -0.256) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856107.764128031] [planner]: Path Found from Rbt @ ( -1.047,  -0.256) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856108.169813333] [behavior]: Sending Path Planning Request from Rbt @ ( -1.147,  -0.256) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856108.249494619] [planner]: Path Found from Rbt @ ( -1.147,  -0.256) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856108.669955104] [behavior]: Sending Path Planning Request from Rbt @ ( -1.247,  -0.256) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856108.760411661] [planner]: Path Found from Rbt @ ( -1.247,  -0.256) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856109.170765263] [behavior]: Sending Path Planning Request from Rbt @ ( -1.347,  -0.256) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856109.260416198] [planner]: Path Found from Rbt @ ( -1.347,  -0.256) to Goal @ ( -2.000, -0.300)[0m
+[rviz2-6] [INFO] [1792856109.495715181] [rviz]: Message Filter dropping message: frame 'base_scan' at time 0.020 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[behavior-8] [0m[INFO] [1792856109.670704763] [behavior]: Sending Path Planning Request from Rbt @ ( -1.447,  -0.256) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856109.766170296] [planner]: Path Found from Rbt @ ( -1.447,  -0.256) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856110.170266597] [behavior]: Sending Path Planning Request from Rbt @ ( -1.547,  -0.256) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856110.269419766] [planner]: Path Found from Rbt @ ( -1.547,  -0.256) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856110.669849554] [behavior]: Sending Path Planning Request from Rbt @ ( -1.647,  -0.256) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856110.752772812] [planner]: Path Found from Rbt @ ( -1.647,  -0.256) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856111.169883853] [behavior]: Sending Path Planning Request from Rbt @ ( -1.747,  -0.256) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856111.263224455] [planner]: Path Found from Rbt @ ( -1.747,  -0.256) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856111.670169369] [behavior]: Sending Path Planning Request from Rbt @ ( -1.847,  -0.256) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856111.761446666] [planner]: Path Found from Rbt @ ( -1.847,  -0.256) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856112.069680819] [behavior]: Reached Goal @ ( -2.000,  -0.300).[0m
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[behavior-8] [0m[INFO] [1792856112.169985717] [behavior]: Sending Path Planning Request from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856112.263710497] [planner]: Path Found from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856112.669934984] [behavior]: Sending Path Planning Request from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856112.748625191] [planner]: Path Found from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856113.169717622] [behavior]: Sending Path Planning Request from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856113.260867349] [planner]: Path Found from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856113.669956385] [behavior]: Sending Path Planning Request from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856113.766724104] [planner]: Path Found from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856114.173208398] [behavior]: Sending Path Planning Request from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856114.268548786] [planner]: Path Found from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856114.669800916] [behavior]: Sending Path Planning Request from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856114.748925610] [planner]: Path Found from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856115.170057910] [behavior]: Sending Path Planning Request from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856115.259408671] [planner]: Path Found from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856115.669717393] [behavior]: Sending Path Planning Request from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856115.761616869] [planner]: Path Found from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856116.169804810] [behavior]: Sending Path Planning Request from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856116.263584564] [planner]: Path Found from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000, -0.300)[0m
+[behavior-8] [0m[INFO] [1792856116.669747793] [behavior]: Sending Path Planning Request from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000,  -0.300)[0m
+[planner-10] [0m[INFO] [1792856116.747977801] [planner]: Path Found from Rbt @ ( -1.917,  -0.262) to Goal @ ( -2.000, -0.300)[0m
+[ERROR] [planner-10]: process[planner-10] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[ERROR] [controller-9]: process[controller-9] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[ERROR] [behavior-8]: process[behavior-8] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[ERROR] [static_transform_publisher-7]: process[static_transform_publisher-7] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[ERROR] [rviz2-6]: process[rviz2-6] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[ERROR] [map_loader-5]: process[map_loader-5] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[ERROR] [parameter_bridge-4]: process[parameter_bridge-4] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[ERROR] [robot_state_publisher-2]: process[robot_state_publisher-2] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[ERROR] [gazebo-1]: process[gazebo-1] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[INFO] [planner-10]: sending signal 'SIGTERM' to process[planner-10]
+[INFO] [controller-9]: sending signal 'SIGTERM' to process[controller-9]
+[INFO] [behavior-8]: sending signal 'SIGTERM' to process[behavior-8]
+[INFO] [static_transform_publisher-7]: sending signal 'SIGTERM' to process[static_transform_publisher-7]
+[INFO] [rviz2-6]: sending signal 'SIGTERM' to process[rviz2-6]
+[INFO] [map_loader-5]: sending signal 'SIGTERM' to process[map_loader-5]
+[INFO] [parameter_bridge-4]: sending signal 'SIGTERM' to process[parameter_bridge-4]
+[INFO] [robot_state_publisher-2]: sending signal 'SIGTERM' to process[robot_state_publisher-2]
+[INFO] [gazebo-1]: sending signal 'SIGTERM' to process[gazebo-1]
+[static_transform_publisher-7] [INFO] [1792856117.158579463] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[rviz2-6] [INFO] [1792856117.159468083] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[map_loader-5] [INFO] [1792856117.160269555] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[parameter_bridge-4] [INFO] [1792856117.161886117] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[robot_state_publisher-2] [INFO] [1792856117.162594022] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ERROR] [gazebo-1]: process has died [pid 13709, exit code -15, cmd 'ruby /opt/ros/jazzy/opt/gz_tools_vendor/bin/gz sim /home/tim/ee3305/install/ee3305_bringup/share/ee3305_bringup/worlds/turtlebot3_house.world -r -v1 -s --force-version 8'].
+[controller-9] Traceback (most recent call last):
+[controller-9]   File "/home/tim/ee3305/install/ee3305_py/lib/ee3305_py/controller", line 33, in <module>
+[controller-9]     sys.exit(load_entry_point('ee3305_py==0.0.0', 'console_scripts', 'controller')())
+[controller-9]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[controller-9]   File "/home/tim/ee3305/install/ee3305_py/lib/python3.12/site-packages/ee3305_py/controller.py", line 164, in main
+[controller-9]     rclpy.spin(Controller())
+[controller-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+[controller-9]     executor.spin_once()
+[controller-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 926, in spin_once
+[controller-9]     self._spin_once_impl(timeout_sec)
+[controller-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 907, in _spin_once_impl
+[controller-9]     handler, entity, node = self.wait_for_ready_callbacks(
+[controller-9]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[controller-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 877, in wait_for_ready_callbacks
+[controller-9]     return next(self._cb_iter)
+[controller-9]            ^^^^^^^^^^^^^^^^^^^
+[controller-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 785, in _wait_for_ready_callbacks
+[controller-9]     raise ExternalShutdownException()
+[controller-9] rclpy.executors.ExternalShutdownException
+[planner-10] Traceback (most recent call last):
+[planner-10]   File "/home/tim/ee3305/install/ee3305_py/lib/ee3305_py/planner", line 33, in <module>
+[planner-10]     sys.exit(load_entry_point('ee3305_py==0.0.0', 'console_scripts', 'planner')())
+[planner-10]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[planner-10]   File "/home/tim/ee3305/install/ee3305_py/lib/python3.12/site-packages/ee3305_py/planner.py", line 489, in main
+[planner-10]     rclpy.spin(Planner())
+[planner-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+[planner-10]     executor.spin_once()
+[planner-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 926, in spin_once
+[planner-10]     self._spin_once_impl(timeout_sec)
+[planner-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 907, in _spin_once_impl
+[planner-10]     handler, entity, node = self.wait_for_ready_callbacks(
+[planner-10]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[planner-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 877, in wait_for_ready_callbacks
+[planner-10]     return next(self._cb_iter)
+[planner-10]            ^^^^^^^^^^^^^^^^^^^
+[planner-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 785, in _wait_for_ready_callbacks
+[planner-10]     raise ExternalShutdownException()
+[planner-10] rclpy.executors.ExternalShutdownException
+[behavior-8] Traceback (most recent call last):
+[behavior-8]   File "/home/tim/ee3305/install/ee3305_py/lib/ee3305_py/behavior", line 33, in <module>
+[behavior-8]     sys.exit(load_entry_point('ee3305_py==0.0.0', 'console_scripts', 'behavior')())
+[behavior-8]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[behavior-8]   File "/home/tim/ee3305/install/ee3305_py/lib/python3.12/site-packages/ee3305_py/behavior.py", line 133, in main
+[behavior-8]     rclpy.spin(Behavior())
+[behavior-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+[behavior-8]     executor.spin_once()
+[behavior-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 926, in spin_once
+[behavior-8]     self._spin_once_impl(timeout_sec)
+[behavior-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 907, in _spin_once_impl
+[behavior-8]     handler, entity, node = self.wait_for_ready_callbacks(
+[behavior-8]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[behavior-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 877, in wait_for_ready_callbacks
+[behavior-8]     return next(self._cb_iter)
+[behavior-8]            ^^^^^^^^^^^^^^^^^^^
+[behavior-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 785, in _wait_for_ready_callbacks
+[behavior-8]     raise ExternalShutdownException()
+[behavior-8] rclpy.executors.ExternalShutdownException
+[INFO] [map_loader-5]: process has finished cleanly [pid 13714]
+[INFO] [static_transform_publisher-7]: process has finished cleanly [pid 13716]
+[INFO] [robot_state_publisher-2]: process has finished cleanly [pid 13710]
+[INFO] [parameter_bridge-4]: process has finished cleanly [pid 13713]
+[ERROR] [planner-10]: process has died [pid 13723, exit code 1, cmd '/home/tim/ee3305/install/ee3305_py/lib/ee3305_py/planner --ros-args --params-file /home/tim/ee3305/install/ee3305_bringup/share/ee3305_bringup/params/run.yaml'].
+[ERROR] [controller-9]: process has died [pid 13720, exit code 1, cmd '/home/tim/ee3305/install/ee3305_py/lib/ee3305_py/controller --ros-args --params-file /home/tim/ee3305/install/ee3305_bringup/share/ee3305_bringup/params/run.yaml'].
+[INFO] [rviz2-6]: process has finished cleanly [pid 13715]
+[ERROR] [behavior-8]: process has died [pid 13719, exit code 1, cmd '/home/tim/ee3305/install/ee3305_py/lib/ee3305_py/behavior --ros-args --params-file /home/tim/ee3305/install/ee3305_bringup/share/ee3305_bringup/params/run.yaml'].

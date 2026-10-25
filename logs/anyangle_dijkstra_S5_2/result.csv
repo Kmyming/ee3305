@@ -1,0 +1,2 @@
+config,scenario,run,result,elapsed,distance,goal_x,goal_y,timeout,goal_tol
+anyangle_dijkstra,S5,2,reached,12.0,0.08738027371477615,-2.0,-0.3,60.0,0.15
