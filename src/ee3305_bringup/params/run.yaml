@@ -2,6 +2,10 @@ behavior:
   ros__parameters:
     frequency: 10.0 # {double} [Hz]
     plan_frequency: 2.0 # {double} [Hz]
+    use_fsm: true # {bool} true: state machine, false: baseline
+    goal_tol: 0.15 # {double} [m]
+    replan_dist: 0.3 # {double} [m]
+    plan_timeout: 3.0 # {double} [s]
 
 controller:
   ros__parameters:

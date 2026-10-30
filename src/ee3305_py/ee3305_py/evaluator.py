@@ -6,7 +6,7 @@ import yaml
 
 from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
-from geometry_msgs.msg import PoseStamped, TwistStamped
+from geometry_msgs.msg import PoseStamped, TwistStamped, PoseArray, Pose
 from nav_msgs.msg import Odometry, Path
 from ament_index_python.packages import get_package_share_directory
 
@@ -45,10 +45,13 @@ class Evaluator(Node):
             self.get_logger().error("scenario does not exist!")
             raise SystemExit(1)
         else:
-            self.goal_x_ = data["scenarios"][self.scenario_]["goal"][0]
-            self.goal_y_ = data["scenarios"][self.scenario_]["goal"][1]
-            self.timeout_ = data["scenarios"][self.scenario_]["timeout"]
-            self.get_logger().info(f"scenario: {self.scenario_}, goal_x: {self.goal_x_}, goal_y: {self.goal_y_}, timeout: {self.timeout_}")
+            sc = data["scenarios"][self.scenario_]
+            # One goal, or a list of goals (a waypoint mission)
+            self.goals_ = sc["goals"] if "goals" in sc else [sc["goal"]]
+            self.goal_x_, self.goal_y_ = self.goals_[-1]    # the run ends at the last one
+            self.timeout_ = sc["timeout"]
+            self.wp_idx_ = 0                                # next waypoint to arrive at
+            self.get_logger().info(f"scenario: {self.scenario_}, {len(self.goals_)} goal(s), last ({self.goal_x_}, {self.goal_y_}), timeout: {self.timeout_}")
 
         # create log folder
         logs_dir = os.path.expanduser(self.log_dir_)
@@ -72,6 +75,9 @@ class Evaluator(Node):
         # path.csv
         self.path_csv_ = self.openCsv_("path.csv", ["t", "path_id", "i", "x", "y"])
         self.path_count_ = 0
+
+        # waypoints.csv: when each goal was reached
+        self.waypoints_csv_ = self.openCsv_("waypoints.csv", ["i", "x", "y", "elapsed"])
 
         # Odometry subscriber
         self.sub_odom_ = self.create_subscription(
@@ -103,6 +109,19 @@ class Evaluator(Node):
             "goal_pose", 
             10
         )
+
+        # Waypoints publisher (missions with more than one goal)
+        self.pub_waypoints_ = self.create_publisher(
+            PoseArray, 
+            "waypoints", 
+            10)
+
+        # Waypoints subscriber: logs the mission into goal.csv
+        self.sub_waypoints_ = self.create_subscription(
+            PoseArray, 
+            "waypoints", 
+            self.callbackSubWaypoints_, 
+            10)
             
         # Handles: Timers
         self.timer_ = self.create_timer(0.5, self.callbackTimer_)
@@ -158,6 +177,12 @@ class Evaluator(Node):
         y = msg.pose.position.y
         self.goal_csv_.writerow([t, x, y])
 
+    # Waypoints subscriber callback: one goal.csv row per waypoint
+    def callbackSubWaypoints_(self, msg: PoseArray):
+        t = self.get_clock().now().nanoseconds * 1e-9
+        for p in msg.poses:
+            self.goal_csv_.writerow([t, p.position.x, p.position.y])
+
     # Path request subscriber callback
     def callbackSubPathRequest_(self, msg: Path):
         if len(msg.poses) < 2:
@@ -187,19 +212,35 @@ class Evaluator(Node):
         if self.rbt_x_ is None:
             return
         if not self.goal_sent_:
-            if self.pub_goal_.get_subscription_count() < 2:
+            # A mission goes out as one PoseArray, a single goal as a PoseStamped
+            mission = len(self.goals_) > 1
+            pub = self.pub_waypoints_ if mission else self.pub_goal_
+            if pub.get_subscription_count() < 2:
                 return
-            goal_pose = PoseStamped()
-            goal_pose.header.frame_id = "map"
-            goal_pose.header.stamp = self.get_clock().now().to_msg()
-            goal_pose.pose.position.x = self.goal_x_
-            goal_pose.pose.position.y = self.goal_y_
-            goal_pose.pose.orientation.w = 1.0 
+            if mission:
+                msg = PoseArray()
+                msg.header.frame_id = "map"
+                msg.header.stamp = self.get_clock().now().to_msg()
+                for gx, gy in self.goals_:
+                    p = Pose()
+                    p.position.x = float(gx)
+                    p.position.y = float(gy)
+                    p.orientation.w = 1.0
+                    msg.poses.append(p)
+                self.get_logger().info(f"Sending {len(self.goals_)} waypoints")
+                pub.publish(msg)
+            else:
+                goal_pose = PoseStamped()
+                goal_pose.header.frame_id = "map"
+                goal_pose.header.stamp = self.get_clock().now().to_msg()
+                goal_pose.pose.position.x = self.goal_x_
+                goal_pose.pose.position.y = self.goal_y_
+                goal_pose.pose.orientation.w = 1.0 
 
-            self.get_logger().info(
-                        f"Sending Goal pose @ ({self.goal_x_:7.3f}, {self.goal_y_:7.3f})"
-            )
-            self.pub_goal_.publish(goal_pose)
+                self.get_logger().info(
+                            f"Sending Goal pose @ ({self.goal_x_:7.3f}, {self.goal_y_:7.3f})"
+                )
+                self.pub_goal_.publish(goal_pose)
             self.goal_sent_ = True
             self.t_goal_ = self.get_clock().now().nanoseconds * 1e-9
             
@@ -211,7 +252,15 @@ class Evaluator(Node):
         self.elapsed_ = elapsed
         self.distance_ = distance
 
-        if distance < self.goal_tol_ :
+        # Waypoints arrived at, in order; each arrival goes to waypoints.csv
+        if self.wp_idx_ < len(self.goals_):
+            wx, wy = self.goals_[self.wp_idx_]
+            if math.hypot(wx - self.rbt_x_, wy - self.rbt_y_) < self.goal_tol_:
+                self.waypoints_csv_.writerow([self.wp_idx_ + 1, wx, wy, elapsed])
+                self.get_logger().info(f"Waypoint {self.wp_idx_ + 1} of {len(self.goals_)} at {elapsed:.1f} s")
+                self.wp_idx_ += 1
+
+        if self.wp_idx_ == len(self.goals_) :
             self.done_ = True
             self.result_ = "reached"
             self.get_logger().info(f"Reached goal in {elapsed} s ({distance} m away)")

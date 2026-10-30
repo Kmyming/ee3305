@@ -8,3 +8,4 @@ scenarios:
   S3: {goal: [8.2, -3.8], timeout: 180.0, purpose: "Long route through two doorways into the bottom-right room"}
   S4: {goal: [-2.1, 4.3], timeout: 150.0, purpose: "Narrow gap by the post, then between the table legs to the far corner of room A"}
   S5: {goal: [-2.0, -0.3], timeout: 60.0, purpose: "Goal behind the robot"}
+  M1: {goals: [[5.3, 1.6], [8.2, -3.8], [-2.1, 4.3]], timeout: 450.0, purpose: "Waypoint mission: the S2, S3 then S4 goals in one drive"}

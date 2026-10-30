@@ -41,6 +41,7 @@ trap 'echo "Stopping..."; stop_all; exit 130' INT
 for i in $(seq 1 "$N"); do
     RUN_DIR="logs/${CONFIG}_${SCENARIO}_${i}"
     mkdir -p "$RUN_DIR"
+    cp src/ee3305_bringup/params/run.yaml "$RUN_DIR/"
     echo "=== $CONFIG $SCENARIO: run $i of $N"
 
     # the sim and the team's nodes, in the background, output saved in the run folder

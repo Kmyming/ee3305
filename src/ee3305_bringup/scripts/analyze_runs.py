@@ -9,7 +9,7 @@ Metrics (sim seconds, metres), measured from goal sent to arrival:
     success          1 if the goal was reached, else 0
     time_to_goal     goal sent -> first odom point within goal_tol of the goal
     driven_length    length of the driven trajectory
-    planned_length   length of the first planned path
+    planned_length   length of the first path planned to each goal (summed over a mission's legs)
     cte_rms, cte_max distance from the robot to the nearest point of the path it was following
                      (the latest /path, resampled to points CTE_SPACING apart)
     min_clearance    closest distance from the robot's centre to a wall cell of the saved map
@@ -97,6 +97,17 @@ def split_paths(path):
     return paths
 
 
+def first_plan_per_leg(paths, tol=0.15):
+    """The first path planned to each goal; a new leg starts when the path's end point moves."""
+    firsts, last_end = [], None
+    for t, x, y in paths:
+        end = (x[-1], y[-1])
+        if last_end is None or math.hypot(end[0] - last_end[0], end[1] - last_end[1]) > tol:
+            firsts.append((t, x, y))
+        last_end = end
+    return firsts
+
+
 # ------------------------------------------------------------------- geometry
 
 def wall_points(yaml_path):
@@ -169,7 +180,8 @@ def compute_metrics(run, walls):
 
     paths = split_paths(run["path"])
     m["plans"] = float(len(paths))
-    m["planned_length"] = polyline_length(paths[0][1], paths[0][2]) if paths else math.nan
+    legs = first_plan_per_leg(paths, goal_tol)
+    m["planned_length"] = sum(polyline_length(px, py) for _, px, py in legs) if paths else math.nan
 
     # Cross-track error: each odom point against the latest path published before it
     errors = []
