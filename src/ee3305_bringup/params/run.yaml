@@ -20,5 +20,5 @@ controller:
 planner:
   ros__parameters:
     max_access_cost: 90 # {int} []
-    algorithm: dijkstra     # dijkstra | anyangle | astar | thetastar
-    smoothing_window: 0.0   # originally 0.6
+    algorithm: thetastar     # dijkstra | anyangle | astar | thetastar
+    smoothing_window: 0.6

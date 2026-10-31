@@ -1,0 +1,24 @@
+behavior:
+  ros__parameters:
+    frequency: 10.0 # {double} [Hz]
+    plan_frequency: 2.0 # {double} [Hz]
+    use_fsm: true # {bool} true: state machine, false: baseline
+    goal_tol: 0.15 # {double} [m]
+    replan_dist: 0.3 # {double} [m]
+    plan_timeout: 3.0 # {double} [s]
+
+controller:
+  ros__parameters:
+    controller_mode: "baseline_pp" # baseline_pp | rotate_pp | rpp
+    frequency: 20.0 # {double} [Hz]
+    lookahead_distance: 0.3 # {double} [m]
+    lookahead_lin_vel: 0.2 # {double} [m/s]
+    stop_thres: 0.1 # {double} [m]
+    max_lin_vel: 0.2 # {double} [m/s]
+    max_ang_vel: 2.0 # {double} [rad/s]
+
+planner:
+  ros__parameters:
+    max_access_cost: 90 # {int} []
+    algorithm: thetastar     # dijkstra | anyangle | astar | thetastar
+    smoothing_window: 3.0   # originally 0.6
