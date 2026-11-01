@@ -3,9 +3,9 @@
 <package format="3">
   <name>ee3305_map_loader</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Loads the saved occupancy map and publishes the inflated global costmap.</description>
   <maintainer email="lyk@todo.todo">lyk</maintainer>
-  <license>TODO: License declaration</license>
+  <license>Proprietary (EE3305/ME3243 course project)</license>
 
   <depend>rclcpp</depend>
   <depend>sensor_msgs</depend>

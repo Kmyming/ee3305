@@ -3,9 +3,9 @@
 <package format="3">
   <name>ee3305_cpp</name>
   <version>0.0.0</version>
-  <description>Answers at https://www.youtube.com/watch?v=dQw4w9WgXcQ</description>
+  <description>C++ template versions of the behaviour, planner and controller nodes (not used by this project).</description>
   <maintainer email="lai.yankai@gmail.com">Lai Yan Kai</maintainer>
-  <license>TODO: License declaration</license>
+  <license>Proprietary (EE3305/ME3243 course project)</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

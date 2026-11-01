@@ -15,8 +15,8 @@ setup(
     zip_safe=True,
     maintainer='Lai Yan Kai',
     maintainer_email='lai.yankai@gmail.com',
-    description='https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    license='TODO: License declaration',
+    description='Python behaviour, planner, controller and evaluator nodes for the EE3305/ME3243 TurtleBot3 navigation project.',
+    license='Proprietary (EE3305/ME3243 course project)',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [

@@ -62,10 +62,10 @@ class Controller(Node):
 
         # Handles: Topic Subscribers
         # We can use ros2 topic list to find all the available topic names
-        # !TODO: path subscriber
+        # Path subscriber
         self.sub_path_ = self.create_subscription(Path, "path", self.callbackSubPath_, qos_profile_sensor_data)
         
-        # !TODO: odometry subscriber
+        # Odometry subscriber
         self.sub_odometry_ = self.create_subscription(Odometry, "odom", self.callbackSubOdom_, qos_profile_sensor_data)
 
         # RPP Proximity heuristic implementation
@@ -73,10 +73,10 @@ class Controller(Node):
         self.sub_scan_ = self.create_subscription(LaserScan, "scan", self.callbackSubScan_, qos_profile_sensor_data)
 
         # Handles: Topic Publishers
-        # !TODO: command velocities publisher
+        # Command velocities publisher
         self.pub_cmd_vel_ = self.create_publisher(TwistStamped, "cmd_vel", 1)
 
-        # !TODO: lookahead point publisher
+        # Lookahead point publisher
         self.pub_lookahead_ = self.create_publisher(PoseStamped, "lookahead", 1)
         
         # Handles: Timers
@@ -99,7 +99,7 @@ class Controller(Node):
             self.get_logger().warn(f"Received path message is empty!")
             return  # do not update the path if no path is returned. This will ensure the copied path contains at least one point when the first non-empty path is received.
 
-        # !TODO: copy the array from the path
+        # Copy the array from the path
         self.path_poses_ = list(msg.poses)
 
         self.received_path_ = True 
@@ -107,7 +107,7 @@ class Controller(Node):
     # Odometry subscriber callback
     # ros2 interface show nav_msgs/msg/Odometry
     def callbackSubOdom_(self, msg: Odometry):
-        # !TODO: write robot pose to rbt_x_, rbt_y_, rbt_yaw_
+        # Write robot pose to rbt_x_, rbt_y_, rbt_yaw_
         self.rbt_x_ = msg.pose.pose.position.x
         self.rbt_y_ = msg.pose.pose.position.y
 

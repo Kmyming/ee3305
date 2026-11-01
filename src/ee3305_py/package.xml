@@ -3,9 +3,9 @@
 <package format="3">
   <name>ee3305_py</name>
   <version>0.0.0</version>
-  <description>Answers at https://www.youtube.com/watch?v=dQw4w9WgXcQ</description>
+  <description>Python behaviour, planner, controller and evaluator nodes for the EE3305/ME3243 TurtleBot3 navigation project.</description>
   <maintainer email="lai.yankai@gmail.com">Lai Yan Kai</maintainer>
-  <license>TODO: License declaration</license>
+  <license>Proprietary (EE3305/ME3243 course project)</license>
 
   <depend>rclpy</depend>
   <depend>geometry_msgs</depend>

@@ -73,7 +73,7 @@ class Planner(Node):
             qos_profile_latch,
         )
 
-        # !TODO: Path request subscriber
+        # Path request subscriber
         self.sub_path_request_ = self.create_subscription(
             Path,
             "path_request",
@@ -82,7 +82,7 @@ class Planner(Node):
         )
 
         # Handles: Publishers
-        # !TODO: Path publisher
+        # Path publisher
         self.pub_path_ = self.create_publisher(Path, "path", 10)
 
         # Handles: Timers
@@ -97,7 +97,7 @@ class Planner(Node):
     # Path request subscriber callback
     def callbackSubPathRequest_(self, msg: Path):   
         
-        # !TODO: write to rbt_x_, rbt_y_, goal_x_, goal_y_
+        # Write to rbt_x_, rbt_y_, goal_x_, goal_y_
         self.rbt_x_ = msg.poses[0].pose.position.x
         self.rbt_y_ = msg.poses[0].pose.position.y
         self.goal_x_ = msg.poses[1].pose.position.x
@@ -109,7 +109,7 @@ class Planner(Node):
     # This is only run once because the costmap is only published once, at the start of the launch.
     def callbackSubGlobalCostmap_(self, msg: OccupancyGrid):
         
-        # !TODO: write to costmap_, costmap_resolution_, costmap_origin_x_, costmap_origin_y_, costmap_rows_, costmap_cols_
+        # Write to costmap_, costmap_resolution_, costmap_origin_x_, costmap_origin_y_, costmap_rows_, costmap_cols_
         self.costmap_ = msg.data
         self.costmap_resolution_ = msg.info.resolution
         self.costmap_origin_x_ = msg.info.origin.position.x

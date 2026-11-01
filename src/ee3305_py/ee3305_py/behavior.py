@@ -30,11 +30,11 @@ class Behavior(Node):
         self.plan_timeout_ = self.get_parameter("plan_timeout").value
 
         # Handles: Topic Subscribers
-        # !TODO: Goal pose subscriber
+        # Goal pose subscriber
         self.sub_goal_ = self.create_subscription(
             PoseStamped, "goal_pose", self.callbackSubGoalPose_, 10)
 
-        # !TODO: Odometry subscriber
+        # Odometry subscriber
         self.sub_odom_ = self.create_subscription(
             Odometry, "odom", self.callbackSubOdom_, qos_profile_sensor_data)
 
@@ -51,7 +51,7 @@ class Behavior(Node):
             PoseArray, "waypoints", self.callbackSubWaypoints_, 10)
 
         # Handles: Topic Publishers
-        # !TODO: Path request publisher
+        # Path request publisher
         self.pub_path_request_ = self.create_publisher(Path, "path_request", 10)
 
         # Handles: Timers
@@ -84,7 +84,7 @@ class Behavior(Node):
             True  # "cancel" the goal and trigger the if condition in timer.
         )
 
-        # !TODO: Copy to goal_x_, goal_y_.
+        # Copy to goal_x_, goal_y_.
         self.goal_x_ = msg.pose.position.x
         self.goal_y_ = msg.pose.position.y
 
@@ -108,7 +108,7 @@ class Behavior(Node):
     def callbackSubOdom_(self, msg: Odometry):
         self.received_rbt_coords_ = True
 
-        # !TODO: Copy to rbt_x_, rbt_y_.
+        # Copy to rbt_x_, rbt_y_.
         self.rbt_x_ = msg.pose.pose.position.x
         self.rbt_y_ = msg.pose.pose.position.y
 
@@ -237,17 +237,17 @@ class Behavior(Node):
                 msg_path_request.header.stamp = self.get_clock().now().to_msg()
                 msg_path_request.header.frame_id = "map"
         
-                # !TODO: write the robot coordinates
+                # Write the robot coordinates
                 rbt_pose = PoseStamped()
                 rbt_pose.pose.position.x = self.rbt_x_
                 rbt_pose.pose.position.y = self.rbt_y_
         
-                # !TODO: write the goal coordinates
+                # Write the goal coordinates
                 goal_pose = PoseStamped()
                 goal_pose.pose.position.x = self.goal_x_
                 goal_pose.pose.position.y = self.goal_y_        
                 
-                # !TODO: fill up the array containing the robot coordinates at [0] and goal coordinates at [1]
+                # Fill up the array containing the robot coordinates at [0] and goal coordinates at [1]
                 msg_path_request.poses.append(rbt_pose)
                 msg_path_request.poses.append(goal_pose)
         
