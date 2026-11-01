@@ -1,0 +1,2 @@
+config,scenario,run,result,elapsed,distance,goal_x,goal_y,timeout,goal_tol
+fsm,S4,3,reached,60.00000000000001,0.09528340788878349,-2.1,4.3,150.0,0.15

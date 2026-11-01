@@ -1,0 +1,2 @@
+config,scenario,run,result,elapsed,distance,goal_x,goal_y,timeout,goal_tol
+ctrl_tuned_rerun,S3,3,reached,73.0,0.12359105597027299,8.2,-3.8,180.0,0.15

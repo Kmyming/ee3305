@@ -1,0 +1,546 @@
+[INFO] [launch]: All log files can be found below /home/kmyming/.ros/log/2026-11-01-18-43-34-685581-kmyming-ASUS-Vivobook-Pro-15-N6506MU-N6506MU-25237
+[INFO] [launch]: Default logging verbosity is set to INFO
+urdf_file_name : turtlebot3_burger.urdf
+urdf_file_name : turtlebot3_burger.urdf
+urdf_file_name : turtlebot3_burger.urdf
+urdf_file_name : turtlebot3_burger.urdf
+[INFO] [behavior-8]: process started with pid [25276]
+[INFO] [controller-9]: process started with pid [25277]
+[INFO] [planner-10]: process started with pid [25278]
+[INFO] [gazebo-1]: process started with pid [25268]
+[INFO] [robot_state_publisher-2]: process started with pid [25269]
+[INFO] [create-3]: process started with pid [25270]
+[INFO] [parameter_bridge-4]: process started with pid [25272]
+[INFO] [map_loader-5]: process started with pid [25273]
+[INFO] [rviz2-6]: process started with pid [25274]
+[INFO] [static_transform_publisher-7]: process started with pid [25275]
+[static_transform_publisher-7] [WARN] [1793529814.924110522] []: Old-style arguments are deprecated; see --help for new-style arguments
+[map_loader-5] [INFO] [1793529814.932177140] [map_loader]: [Parameter] max_cost: {"name": "max_cost", "type": "integer", "value": "99"}
+[map_loader-5] [INFO] [1793529814.932237916] [map_loader]: [Parameter] min_cost: {"name": "min_cost", "type": "integer", "value": "0"}
+[map_loader-5] [INFO] [1793529814.932252626] [map_loader]: [Parameter] inflation_radius: {"name": "inflation_radius", "type": "double", "value": "0.800000"}
+[map_loader-5] [INFO] [1793529814.932260557] [map_loader]: [Parameter] circumscribed_radius: {"name": "circumscribed_radius", "type": "double", "value": "0.200000"}
+[map_loader-5] [INFO] [1793529814.932268321] [map_loader]: [Parameter] cost_exponent: {"name": "cost_exponent", "type": "double", "value": "8.000000"}
+[map_loader-5] [INFO] [1793529814.932276089] [map_loader]: [Parameter] topic_map: {"name": "topic_map", "type": "string", "value": "/map"}
+[map_loader-5] [INFO] [1793529814.932284531] [map_loader]: [Parameter] topic_global_costmap: {"name": "topic_global_costmap", "type": "string", "value": "/global_costmap"}
+[map_loader-5] [INFO] [1793529814.932293731] [map_loader]: [Parameter] filepath: {"name": "filepath", "type": "string", "value": "/home/kmyming/ee3305/install/ee3305_bringup/share/ee3305_bringup/maps/ee3305"}
+[map_loader-5] [INFO] [1793529814.932301130] [map_loader]: [Parameter] frame_id: {"name": "frame_id", "type": "string", "value": "/map"}
+[static_transform_publisher-7] [INFO] [1793529814.933425059] [static_transform_publisher]: Spinning until stopped - publishing transform
+[static_transform_publisher-7] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-7] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-7] from '/map' to '/odom'
+[map_loader-5] [INFO] [1793529814.934192266] [map_loader]: Published occupancy grid to /map
+[robot_state_publisher-2] [INFO] [1793529814.953134324] [robot_state_publisher]: Robot initialized
+[create-3] [INFO] [1793529814.954184256] [ros_gz_sim]: Requesting list of world names.
+[map_loader-5] [INFO] [1793529815.098232809] [map_loader]: Published global costmap to /global_costmap
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/world[@name="default"]/gui/camera[@name="user_camera"]/pose[@frame=""]:/home/kmyming/ee3305/install/ee3305_bringup/share/ee3305_bringup/worlds/turtlebot3_house.world:L10]: XML Attribute[frame] in element[pose] not defined in SDF.
+[rviz2-6] [INFO] [1793529815.181007813] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-6] [INFO] [1793529815.181080508] [rviz2]: OpenGl version: 4.6 (GLSL 4.6)
+[rviz2-6] [INFO] [1793529815.203186487] [rviz2]: Stereo is NOT SUPPORTED
+[controller-9] [0m[INFO] [1793529815.237651823] [controller]: Selected Controller Mode: rpp[0m
+[planner-10] [0m[INFO] [1793529815.301471643] [planner]: Costmap received: 317 x 225 cells, 0.05000000074505806 m per cell[0m
+[create-3] [INFO] [1793529815.621554630] [ros_gz_sim]: Entity creation successful.
+[INFO] [create-3]: process has finished cleanly [pid 25270]
+[rviz2-6] [INFO] [1793529815.760910415] [rviz2]: Trying to create a map of size 317 x 225 using 1 swatches
+[rviz2-6] [INFO] [1793529815.761543567] [rviz2]: Trying to create a map of size 317 x 225 using 1 swatches
+[rviz2-6] [ERROR] [1793529815.763085806] [rviz2]: rviz/glsl120/indexed_8bit_image.vert
+[rviz2-6] rviz/glsl120/indexed_8bit_image.frag
+[rviz2-6]  GLSL link result : 
+[rviz2-6] active samplers with a different type refer to the same texture image unit
+[parameter_bridge-4] [INFO] [1793529815.979003014] [ros_gz_bridge]: Creating GZ->ROS Bridge: [clock (gz.msgs.Clock) -> clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1793529815.981476621] [ros_gz_bridge]: Creating GZ->ROS Bridge: [joint_states (gz.msgs.Model) -> joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1793529815.984900464] [ros_gz_bridge]: Creating GZ->ROS Bridge: [odom (gz.msgs.Odometry) -> odom (nav_msgs/msg/Odometry)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1793529815.986757501] [ros_gz_bridge]: Creating GZ->ROS Bridge: [tf (gz.msgs.Pose_V) -> tf (tf2_msgs/msg/TFMessage)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1793529815.988455911] [ros_gz_bridge]: Creating ROS->GZ Bridge: [cmd_vel (geometry_msgs/msg/TwistStamped) -> cmd_vel (gz.msgs.Twist)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1793529815.989663085] [ros_gz_bridge]: Creating GZ->ROS Bridge: [imu (gz.msgs.IMU) -> imu (sensor_msgs/msg/Imu)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1793529815.990346823] [ros_gz_bridge]: Creating GZ->ROS Bridge: [scan (gz.msgs.LaserScan) -> scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="turtlebot3_burger"]/link[@name="base_scan"]/sensor[@name="hls_lfcd_lds"]/gz_frame_id:/opt/ros/jazzy/share/turtlebot3_gazebo/models/turtlebot3_burger/model.sdf:L141]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gazebo-1] libEGL warning: pci id for fd 55: 10de:28a1, driver (null)
+[gazebo-1] 
+[gazebo-1] pci id for fd 56: 10de:28a1, driver (null)
+[gazebo-1] pci id for fd 57: 10de:28a1, driver (null)
+[gazebo-1] libEGL warning: egl: failed to create dri2 screen
+[gazebo-1] libEGL warning: pci id for fd 55: 10de:28a1, driver (null)
+[gazebo-1] 
+[gazebo-1] pci id for fd 56: 10de:28a1, driver (null)
+[gazebo-1] pci id for fd 57: 10de:28a1, driver (null)
+[gazebo-1] libEGL warning: egl: failed to create dri2 screen
+[gazebo-1] libEGL warning: pci id for fd 55: 10de:28a1, driver (null)
+[gazebo-1] 
+[gazebo-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mWood_Floor_Dark.jpg[0m[1;31m][0m[1;31m[0m
+[gazebo-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mMaple.jpg[0m[1;31m][0m[1;31m[0m
+[behavior-8] [0m[INFO] [1793529818.155092994] [behavior]: Received New Goal @ (  8.200,  -3.800).[0m
+[behavior-8] [0m[INFO] [1793529818.209656038] [behavior]: Going to Goal @ (  8.200,  -3.800).[0m
+[behavior-8] [0m[INFO] [1793529818.210436234] [behavior]: Sending Path Planning Request from Rbt @ (  0.000,  -0.000) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529818.388808520] [planner]: Path Found from Rbt @ (  0.000,  -0.000) to Goal @ (  8.200, -3.800)[0m
+[parameter_bridge-4] [INFO] [1793529818.418622916] [ros_gz_bridge]: Passing message from ROS geometry_msgs/msg/TwistStamped to Gazebo gz.msgs.Twist (showing msg only once per type)
+[behavior-8] [0m[INFO] [1793529818.709305939] [behavior]: Sending Path Planning Request from Rbt @ (  0.012,  -0.001) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529818.885320277] [planner]: Path Found from Rbt @ (  0.012,  -0.001) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529819.209629975] [behavior]: Sending Path Planning Request from Rbt @ (  0.036,  -0.010) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529819.387845353] [planner]: Path Found from Rbt @ (  0.036,  -0.010) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529819.709357220] [behavior]: Sending Path Planning Request from Rbt @ (  0.079,  -0.044) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529819.874216550] [planner]: Path Found from Rbt @ (  0.079,  -0.044) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529820.209905328] [behavior]: Sending Path Planning Request from Rbt @ (  0.153,  -0.112) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529820.383000254] [planner]: Path Found from Rbt @ (  0.153,  -0.112) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529820.709875015] [behavior]: Sending Path Planning Request from Rbt @ (  0.224,  -0.183) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529820.881615174] [planner]: Path Found from Rbt @ (  0.224,  -0.183) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529821.209286394] [behavior]: Sending Path Planning Request from Rbt @ (  0.267,  -0.221) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529821.382226697] [planner]: Path Found from Rbt @ (  0.267,  -0.221) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529821.709599151] [behavior]: Sending Path Planning Request from Rbt @ (  0.303,  -0.240) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529821.885487789] [planner]: Path Found from Rbt @ (  0.303,  -0.240) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529822.209327731] [behavior]: Sending Path Planning Request from Rbt @ (  0.349,  -0.254) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529822.391352385] [planner]: Path Found from Rbt @ (  0.349,  -0.254) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529822.709705112] [behavior]: Sending Path Planning Request from Rbt @ (  0.427,  -0.262) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529822.873322452] [planner]: Path Found from Rbt @ (  0.427,  -0.262) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529823.209990338] [behavior]: Sending Path Planning Request from Rbt @ (  0.527,  -0.259) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529823.377641009] [planner]: Path Found from Rbt @ (  0.527,  -0.259) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529823.709988312] [behavior]: Sending Path Planning Request from Rbt @ (  0.627,  -0.257) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529823.884068564] [planner]: Path Found from Rbt @ (  0.627,  -0.257) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529824.209305730] [behavior]: Sending Path Planning Request from Rbt @ (  0.727,  -0.256) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529824.383242674] [planner]: Path Found from Rbt @ (  0.727,  -0.256) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529824.709283316] [behavior]: Sending Path Planning Request from Rbt @ (  0.827,  -0.256) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529824.885441835] [planner]: Path Found from Rbt @ (  0.827,  -0.256) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529825.210050106] [behavior]: Sending Path Planning Request from Rbt @ (  0.927,  -0.256) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529825.373835227] [planner]: Path Found from Rbt @ (  0.927,  -0.256) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529825.709573275] [behavior]: Sending Path Planning Request from Rbt @ (  1.027,  -0.256) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529825.878273385] [planner]: Path Found from Rbt @ (  1.027,  -0.256) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529826.209674037] [behavior]: Sending Path Planning Request from Rbt @ (  1.127,  -0.256) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529826.386177376] [planner]: Path Found from Rbt @ (  1.127,  -0.256) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529826.710051641] [behavior]: Sending Path Planning Request from Rbt @ (  1.227,  -0.256) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529826.885098352] [planner]: Path Found from Rbt @ (  1.227,  -0.256) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529827.209524838] [behavior]: Sending Path Planning Request from Rbt @ (  1.327,  -0.256) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529827.387551389] [planner]: Path Found from Rbt @ (  1.327,  -0.256) to Goal @ (  8.200, -3.800)[0m
+[rviz2-6] [INFO] [1793529827.672182681] [rviz]: Message Filter dropping message: frame 'base_scan' at time 0.020 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[behavior-8] [0m[INFO] [1793529827.709386557] [behavior]: Sending Path Planning Request from Rbt @ (  1.427,  -0.256) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529827.872928320] [planner]: Path Found from Rbt @ (  1.427,  -0.256) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529828.209321443] [behavior]: Sending Path Planning Request from Rbt @ (  1.527,  -0.256) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529828.379142470] [planner]: Path Found from Rbt @ (  1.527,  -0.256) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529828.709293698] [behavior]: Sending Path Planning Request from Rbt @ (  1.627,  -0.256) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529828.879067882] [planner]: Path Found from Rbt @ (  1.627,  -0.256) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529829.209255488] [behavior]: Sending Path Planning Request from Rbt @ (  1.727,  -0.256) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529829.387188494] [planner]: Path Found from Rbt @ (  1.727,  -0.256) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529829.709314817] [behavior]: Sending Path Planning Request from Rbt @ (  1.827,  -0.256) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529829.883702008] [planner]: Path Found from Rbt @ (  1.827,  -0.256) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529830.209319930] [behavior]: Sending Path Planning Request from Rbt @ (  1.917,  -0.256) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529830.386244146] [planner]: Path Found from Rbt @ (  1.917,  -0.256) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529830.709682494] [behavior]: Sending Path Planning Request from Rbt @ (  1.982,  -0.263) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529830.876322399] [planner]: Path Found from Rbt @ (  1.982,  -0.263) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529831.209645769] [behavior]: Sending Path Planning Request from Rbt @ (  2.026,  -0.272) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529831.380605609] [planner]: Path Found from Rbt @ (  2.026,  -0.272) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529831.709360489] [behavior]: Sending Path Planning Request from Rbt @ (  2.083,  -0.273) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529831.887477167] [planner]: Path Found from Rbt @ (  2.083,  -0.273) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529832.209670546] [behavior]: Sending Path Planning Request from Rbt @ (  2.165,  -0.266) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529832.384674869] [planner]: Path Found from Rbt @ (  2.165,  -0.266) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529832.709302828] [behavior]: Sending Path Planning Request from Rbt @ (  2.223,  -0.265) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529832.885752372] [planner]: Path Found from Rbt @ (  2.223,  -0.265) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529833.209324974] [behavior]: Sending Path Planning Request from Rbt @ (  2.273,  -0.268) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529833.374757021] [planner]: Path Found from Rbt @ (  2.273,  -0.268) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529833.709270841] [behavior]: Sending Path Planning Request from Rbt @ (  2.336,  -0.268) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529833.880743380] [planner]: Path Found from Rbt @ (  2.336,  -0.268) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529834.209267529] [behavior]: Sending Path Planning Request from Rbt @ (  2.373,  -0.273) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529834.383927069] [planner]: Path Found from Rbt @ (  2.373,  -0.273) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529834.709950466] [behavior]: Sending Path Planning Request from Rbt @ (  2.413,  -0.287) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529834.887584106] [planner]: Path Found from Rbt @ (  2.413,  -0.287) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529835.209184837] [behavior]: Sending Path Planning Request from Rbt @ (  2.458,  -0.315) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529835.393899438] [planner]: Path Found from Rbt @ (  2.458,  -0.315) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529835.709648406] [behavior]: Sending Path Planning Request from Rbt @ (  2.524,  -0.376) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529835.878332450] [planner]: Path Found from Rbt @ (  2.524,  -0.376) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529836.210058624] [behavior]: Sending Path Planning Request from Rbt @ (  2.593,  -0.449) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529836.378625705] [planner]: Path Found from Rbt @ (  2.593,  -0.449) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529836.709689847] [behavior]: Sending Path Planning Request from Rbt @ (  2.650,  -0.508) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529836.884926928] [planner]: Path Found from Rbt @ (  2.650,  -0.508) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529837.209293021] [behavior]: Sending Path Planning Request from Rbt @ (  2.714,  -0.553) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529837.383967306] [planner]: Path Found from Rbt @ (  2.714,  -0.553) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529837.709259554] [behavior]: Sending Path Planning Request from Rbt @ (  2.772,  -0.585) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529837.882626566] [planner]: Path Found from Rbt @ (  2.772,  -0.585) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529838.209746403] [behavior]: Sending Path Planning Request from Rbt @ (  2.828,  -0.602) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529838.373400359] [planner]: Path Found from Rbt @ (  2.828,  -0.602) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529838.709649312] [behavior]: Sending Path Planning Request from Rbt @ (  2.916,  -0.610) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529838.886320758] [planner]: Path Found from Rbt @ (  2.916,  -0.610) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529839.209300586] [behavior]: Sending Path Planning Request from Rbt @ (  3.016,  -0.609) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529839.381789332] [planner]: Path Found from Rbt @ (  3.016,  -0.609) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529839.709575912] [behavior]: Sending Path Planning Request from Rbt @ (  3.111,  -0.606) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529839.888807539] [planner]: Path Found from Rbt @ (  3.111,  -0.606) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529840.209649001] [behavior]: Sending Path Planning Request from Rbt @ (  3.159,  -0.600) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529840.387000299] [planner]: Path Found from Rbt @ (  3.159,  -0.600) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529840.709960801] [behavior]: Sending Path Planning Request from Rbt @ (  3.201,  -0.585) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529840.892757354] [planner]: Path Found from Rbt @ (  3.201,  -0.585) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529841.210094803] [behavior]: Sending Path Planning Request from Rbt @ (  3.249,  -0.555) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529841.375898980] [planner]: Path Found from Rbt @ (  3.249,  -0.555) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529841.709842487] [behavior]: Sending Path Planning Request from Rbt @ (  3.317,  -0.493) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529841.881644629] [planner]: Path Found from Rbt @ (  3.317,  -0.493) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529842.209726726] [behavior]: Sending Path Planning Request from Rbt @ (  3.385,  -0.421) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529842.386679479] [planner]: Path Found from Rbt @ (  3.385,  -0.421) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529842.709405006] [behavior]: Sending Path Planning Request from Rbt @ (  3.423,  -0.370) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529842.896296427] [planner]: Path Found from Rbt @ (  3.423,  -0.370) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529843.209424681] [behavior]: Sending Path Planning Request from Rbt @ (  3.464,  -0.303) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529843.397540071] [planner]: Path Found from Rbt @ (  3.464,  -0.303) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529843.709873923] [behavior]: Sending Path Planning Request from Rbt @ (  3.477,  -0.272) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529843.879887154] [planner]: Path Found from Rbt @ (  3.477,  -0.272) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529844.209992676] [behavior]: Sending Path Planning Request from Rbt @ (  3.482,  -0.247) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529844.390184864] [planner]: Path Found from Rbt @ (  3.482,  -0.247) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529844.709799752] [behavior]: Sending Path Planning Request from Rbt @ (  3.481,  -0.222) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529844.891367415] [planner]: Path Found from Rbt @ (  3.481,  -0.222) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529845.210031241] [behavior]: Sending Path Planning Request from Rbt @ (  3.471,  -0.183) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529845.390247373] [planner]: Path Found from Rbt @ (  3.471,  -0.183) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529845.709312629] [behavior]: Sending Path Planning Request from Rbt @ (  3.452,  -0.134) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529845.899501454] [planner]: Path Found from Rbt @ (  3.452,  -0.134) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529846.209312050] [behavior]: Sending Path Planning Request from Rbt @ (  3.413,  -0.074) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529846.380498842] [planner]: Path Found from Rbt @ (  3.413,  -0.074) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529846.710015078] [behavior]: Sending Path Planning Request from Rbt @ (  3.364,  -0.004) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529846.887264540] [planner]: Path Found from Rbt @ (  3.364,  -0.004) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529847.209282072] [behavior]: Sending Path Planning Request from Rbt @ (  3.321,   0.068) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529847.384035711] [planner]: Path Found from Rbt @ (  3.321,   0.068) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529847.709666575] [behavior]: Sending Path Planning Request from Rbt @ (  3.276,   0.154) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529847.889238867] [planner]: Path Found from Rbt @ (  3.276,   0.154) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529848.209413716] [behavior]: Sending Path Planning Request from Rbt @ (  3.233,   0.242) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529848.387511735] [planner]: Path Found from Rbt @ (  3.233,   0.242) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529848.709243696] [behavior]: Sending Path Planning Request from Rbt @ (  3.207,   0.309) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529848.875291993] [planner]: Path Found from Rbt @ (  3.207,   0.309) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529849.209708438] [behavior]: Sending Path Planning Request from Rbt @ (  3.194,   0.390) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529849.385182054] [planner]: Path Found from Rbt @ (  3.194,   0.390) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529849.709597385] [behavior]: Sending Path Planning Request from Rbt @ (  3.193,   0.490) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529849.881715068] [planner]: Path Found from Rbt @ (  3.193,   0.490) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529850.209282307] [behavior]: Sending Path Planning Request from Rbt @ (  3.198,   0.546) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529850.383532356] [planner]: Path Found from Rbt @ (  3.198,   0.546) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529850.709575627] [behavior]: Sending Path Planning Request from Rbt @ (  3.212,   0.588) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529850.886861626] [planner]: Path Found from Rbt @ (  3.212,   0.588) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529851.209304408] [behavior]: Sending Path Planning Request from Rbt @ (  3.238,   0.636) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529851.370680366] [planner]: Path Found from Rbt @ (  3.238,   0.636) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529851.709652814] [behavior]: Sending Path Planning Request from Rbt @ (  3.292,   0.699) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529851.879608831] [planner]: Path Found from Rbt @ (  3.292,   0.699) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529852.209583237] [behavior]: Sending Path Planning Request from Rbt @ (  3.357,   0.760) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529852.377314343] [planner]: Path Found from Rbt @ (  3.357,   0.760) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529852.709518151] [behavior]: Sending Path Planning Request from Rbt @ (  3.405,   0.803) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529852.879295163] [planner]: Path Found from Rbt @ (  3.405,   0.803) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529853.209649221] [behavior]: Sending Path Planning Request from Rbt @ (  3.437,   0.823) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529853.392971731] [planner]: Path Found from Rbt @ (  3.437,   0.823) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529853.709456751] [behavior]: Sending Path Planning Request from Rbt @ (  3.478,   0.838) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529853.869962654] [planner]: Path Found from Rbt @ (  3.478,   0.838) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529854.209289261] [behavior]: Sending Path Planning Request from Rbt @ (  3.541,   0.848) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529854.374243514] [planner]: Path Found from Rbt @ (  3.541,   0.848) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529854.710493036] [behavior]: Sending Path Planning Request from Rbt @ (  3.638,   0.849) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529854.873584279] [planner]: Path Found from Rbt @ (  3.638,   0.849) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529855.209306056] [behavior]: Sending Path Planning Request from Rbt @ (  3.725,   0.846) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529855.372891776] [planner]: Path Found from Rbt @ (  3.725,   0.846) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529855.709890470] [behavior]: Sending Path Planning Request from Rbt @ (  3.812,   0.844) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529855.872336684] [planner]: Path Found from Rbt @ (  3.812,   0.844) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529856.209483316] [behavior]: Sending Path Planning Request from Rbt @ (  3.912,   0.844) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529856.351389704] [planner]: Path Found from Rbt @ (  3.912,   0.844) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529856.709286205] [behavior]: Sending Path Planning Request from Rbt @ (  4.012,   0.844) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529856.858416671] [planner]: Path Found from Rbt @ (  4.012,   0.844) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529857.209576248] [behavior]: Sending Path Planning Request from Rbt @ (  4.085,   0.845) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529857.350231570] [planner]: Path Found from Rbt @ (  4.085,   0.845) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529857.709550018] [behavior]: Sending Path Planning Request from Rbt @ (  4.137,   0.857) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529857.845094324] [planner]: Path Found from Rbt @ (  4.137,   0.857) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529858.209446672] [behavior]: Sending Path Planning Request from Rbt @ (  4.233,   0.884) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529858.355461814] [planner]: Path Found from Rbt @ (  4.233,   0.884) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529858.709358989] [behavior]: Sending Path Planning Request from Rbt @ (  4.332,   0.895) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529858.840588059] [planner]: Path Found from Rbt @ (  4.332,   0.895) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529859.209611900] [behavior]: Sending Path Planning Request from Rbt @ (  4.432,   0.896) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529859.320766120] [planner]: Path Found from Rbt @ (  4.432,   0.896) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529859.709886492] [behavior]: Sending Path Planning Request from Rbt @ (  4.532,   0.895) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529859.822851397] [planner]: Path Found from Rbt @ (  4.532,   0.895) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529860.209565140] [behavior]: Sending Path Planning Request from Rbt @ (  4.632,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529860.317893449] [planner]: Path Found from Rbt @ (  4.632,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529860.709249767] [behavior]: Sending Path Planning Request from Rbt @ (  4.732,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529860.821177128] [planner]: Path Found from Rbt @ (  4.732,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529861.210219621] [behavior]: Sending Path Planning Request from Rbt @ (  4.832,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529861.304832589] [planner]: Path Found from Rbt @ (  4.832,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529861.709918516] [behavior]: Sending Path Planning Request from Rbt @ (  4.932,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529861.810657884] [planner]: Path Found from Rbt @ (  4.932,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529862.209933939] [behavior]: Sending Path Planning Request from Rbt @ (  5.032,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529862.313937876] [planner]: Path Found from Rbt @ (  5.032,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529862.709611593] [behavior]: Sending Path Planning Request from Rbt @ (  5.132,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529862.808370596] [planner]: Path Found from Rbt @ (  5.132,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529863.209323006] [behavior]: Sending Path Planning Request from Rbt @ (  5.232,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529863.305034336] [planner]: Path Found from Rbt @ (  5.232,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529863.709316269] [behavior]: Sending Path Planning Request from Rbt @ (  5.332,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529863.792323346] [planner]: Path Found from Rbt @ (  5.332,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529864.210120539] [behavior]: Sending Path Planning Request from Rbt @ (  5.432,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529864.301892430] [planner]: Path Found from Rbt @ (  5.432,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529864.709809621] [behavior]: Sending Path Planning Request from Rbt @ (  5.532,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529864.796600877] [planner]: Path Found from Rbt @ (  5.532,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529865.210270061] [behavior]: Sending Path Planning Request from Rbt @ (  5.632,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529865.296687857] [planner]: Path Found from Rbt @ (  5.632,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529865.710087739] [behavior]: Sending Path Planning Request from Rbt @ (  5.732,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529865.797445553] [planner]: Path Found from Rbt @ (  5.732,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529866.209925783] [behavior]: Sending Path Planning Request from Rbt @ (  5.832,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529866.284505381] [planner]: Path Found from Rbt @ (  5.832,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529866.709301910] [behavior]: Sending Path Planning Request from Rbt @ (  5.932,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529866.792674096] [planner]: Path Found from Rbt @ (  5.932,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529867.209869853] [behavior]: Sending Path Planning Request from Rbt @ (  6.032,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529867.291171186] [planner]: Path Found from Rbt @ (  6.032,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529867.709887781] [behavior]: Sending Path Planning Request from Rbt @ (  6.132,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529867.790629838] [planner]: Path Found from Rbt @ (  6.132,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529868.209603519] [behavior]: Sending Path Planning Request from Rbt @ (  6.232,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529868.296938079] [planner]: Path Found from Rbt @ (  6.232,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529868.710114921] [behavior]: Sending Path Planning Request from Rbt @ (  6.332,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529868.778090468] [planner]: Path Found from Rbt @ (  6.332,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529869.209720721] [behavior]: Sending Path Planning Request from Rbt @ (  6.432,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529869.290130004] [planner]: Path Found from Rbt @ (  6.432,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529869.709951329] [behavior]: Sending Path Planning Request from Rbt @ (  6.532,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529869.788916721] [planner]: Path Found from Rbt @ (  6.532,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529870.209544695] [behavior]: Sending Path Planning Request from Rbt @ (  6.632,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529870.293293395] [planner]: Path Found from Rbt @ (  6.632,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529870.709609923] [behavior]: Sending Path Planning Request from Rbt @ (  6.732,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529870.788150101] [planner]: Path Found from Rbt @ (  6.732,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529871.209601945] [behavior]: Sending Path Planning Request from Rbt @ (  6.832,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529871.280044406] [planner]: Path Found from Rbt @ (  6.832,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529871.709319273] [behavior]: Sending Path Planning Request from Rbt @ (  6.932,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529871.784726012] [planner]: Path Found from Rbt @ (  6.932,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529872.209569509] [behavior]: Sending Path Planning Request from Rbt @ (  7.032,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529872.286518211] [planner]: Path Found from Rbt @ (  7.032,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529872.709595866] [behavior]: Sending Path Planning Request from Rbt @ (  7.132,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529872.786754266] [planner]: Path Found from Rbt @ (  7.132,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529873.209276897] [behavior]: Sending Path Planning Request from Rbt @ (  7.232,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529873.288376709] [planner]: Path Found from Rbt @ (  7.232,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529873.709387391] [behavior]: Sending Path Planning Request from Rbt @ (  7.332,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529873.776922068] [planner]: Path Found from Rbt @ (  7.332,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529874.210121177] [behavior]: Sending Path Planning Request from Rbt @ (  7.432,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529874.285699828] [planner]: Path Found from Rbt @ (  7.432,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529874.709317408] [behavior]: Sending Path Planning Request from Rbt @ (  7.532,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529874.785900826] [planner]: Path Found from Rbt @ (  7.532,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529875.209889687] [behavior]: Sending Path Planning Request from Rbt @ (  7.632,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529875.284955204] [planner]: Path Found from Rbt @ (  7.632,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529875.709360486] [behavior]: Sending Path Planning Request from Rbt @ (  7.732,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529875.775784443] [planner]: Path Found from Rbt @ (  7.732,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529876.209619645] [behavior]: Sending Path Planning Request from Rbt @ (  7.832,   0.894) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529876.282823005] [planner]: Path Found from Rbt @ (  7.832,   0.894) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529876.709651622] [behavior]: Sending Path Planning Request from Rbt @ (  7.920,   0.893) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529876.783337347] [planner]: Path Found from Rbt @ (  7.920,   0.893) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529877.209385419] [behavior]: Sending Path Planning Request from Rbt @ (  7.965,   0.886) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529877.286923261] [planner]: Path Found from Rbt @ (  7.965,   0.886) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529877.709292139] [behavior]: Sending Path Planning Request from Rbt @ (  8.007,   0.869) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529877.788866820] [planner]: Path Found from Rbt @ (  8.007,   0.869) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529878.209379139] [behavior]: Sending Path Planning Request from Rbt @ (  8.054,   0.839) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529878.274754178] [planner]: Path Found from Rbt @ (  8.054,   0.839) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529878.709663478] [behavior]: Sending Path Planning Request from Rbt @ (  8.117,   0.782) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529878.783271865] [planner]: Path Found from Rbt @ (  8.117,   0.782) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529879.209391847] [behavior]: Sending Path Planning Request from Rbt @ (  8.171,   0.724) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529879.283525777] [planner]: Path Found from Rbt @ (  8.171,   0.724) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529879.709300015] [behavior]: Sending Path Planning Request from Rbt @ (  8.218,   0.674) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529879.785562377] [planner]: Path Found from Rbt @ (  8.218,   0.674) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529880.209571687] [behavior]: Sending Path Planning Request from Rbt @ (  8.251,   0.637) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529880.288610170] [planner]: Path Found from Rbt @ (  8.251,   0.637) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529880.709595372] [behavior]: Sending Path Planning Request from Rbt @ (  8.269,   0.610) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529880.774925037] [planner]: Path Found from Rbt @ (  8.269,   0.610) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529881.209915279] [behavior]: Sending Path Planning Request from Rbt @ (  8.284,   0.577) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529881.280645087] [planner]: Path Found from Rbt @ (  8.284,   0.577) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529881.709515723] [behavior]: Sending Path Planning Request from Rbt @ (  8.297,   0.523) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529881.782908194] [planner]: Path Found from Rbt @ (  8.297,   0.523) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529882.209266422] [behavior]: Sending Path Planning Request from Rbt @ (  8.302,   0.433) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529882.284963949] [planner]: Path Found from Rbt @ (  8.302,   0.433) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529882.709306477] [behavior]: Sending Path Planning Request from Rbt @ (  8.298,   0.333) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529882.768985326] [planner]: Path Found from Rbt @ (  8.298,   0.333) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529883.209340999] [behavior]: Sending Path Planning Request from Rbt @ (  8.296,   0.233) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529883.275387531] [planner]: Path Found from Rbt @ (  8.296,   0.233) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529883.710318831] [behavior]: Sending Path Planning Request from Rbt @ (  8.296,   0.133) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529883.774853863] [planner]: Path Found from Rbt @ (  8.296,   0.133) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529884.209384041] [behavior]: Sending Path Planning Request from Rbt @ (  8.296,   0.033) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529884.274511885] [planner]: Path Found from Rbt @ (  8.296,   0.033) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529884.709593097] [behavior]: Sending Path Planning Request from Rbt @ (  8.296,  -0.067) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529884.777943973] [planner]: Path Found from Rbt @ (  8.296,  -0.067) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529885.209666389] [behavior]: Sending Path Planning Request from Rbt @ (  8.296,  -0.167) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529885.262907359] [planner]: Path Found from Rbt @ (  8.296,  -0.167) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529885.710003220] [behavior]: Sending Path Planning Request from Rbt @ (  8.296,  -0.267) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529885.769867835] [planner]: Path Found from Rbt @ (  8.296,  -0.267) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529886.209993280] [behavior]: Sending Path Planning Request from Rbt @ (  8.296,  -0.367) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529886.272346498] [planner]: Path Found from Rbt @ (  8.296,  -0.367) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529886.709277043] [behavior]: Sending Path Planning Request from Rbt @ (  8.296,  -0.467) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529886.769434554] [planner]: Path Found from Rbt @ (  8.296,  -0.467) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529887.209327240] [behavior]: Sending Path Planning Request from Rbt @ (  8.296,  -0.567) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529887.257747735] [planner]: Path Found from Rbt @ (  8.296,  -0.567) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529887.709574978] [behavior]: Sending Path Planning Request from Rbt @ (  8.296,  -0.667) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529887.764805524] [planner]: Path Found from Rbt @ (  8.296,  -0.667) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529888.209640512] [behavior]: Sending Path Planning Request from Rbt @ (  8.295,  -0.743) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529888.268151428] [planner]: Path Found from Rbt @ (  8.295,  -0.743) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529888.709810494] [behavior]: Sending Path Planning Request from Rbt @ (  8.288,  -0.809) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529888.769494557] [planner]: Path Found from Rbt @ (  8.288,  -0.809) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529889.209757612] [behavior]: Sending Path Planning Request from Rbt @ (  8.288,  -0.891) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529889.280134347] [planner]: Path Found from Rbt @ (  8.288,  -0.891) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529889.709631021] [behavior]: Sending Path Planning Request from Rbt @ (  8.286,  -0.959) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529889.755602026] [planner]: Path Found from Rbt @ (  8.286,  -0.959) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529890.209723047] [behavior]: Sending Path Planning Request from Rbt @ (  8.289,  -1.032) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529890.263082485] [planner]: Path Found from Rbt @ (  8.289,  -1.032) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529890.709300783] [behavior]: Sending Path Planning Request from Rbt @ (  8.289,  -1.102) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529890.762360255] [planner]: Path Found from Rbt @ (  8.289,  -1.102) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529891.209224914] [behavior]: Sending Path Planning Request from Rbt @ (  8.289,  -1.148) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529891.265620751] [planner]: Path Found from Rbt @ (  8.289,  -1.148) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529891.709603097] [behavior]: Sending Path Planning Request from Rbt @ (  8.284,  -1.181) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529891.755549228] [planner]: Path Found from Rbt @ (  8.284,  -1.181) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529892.209654420] [behavior]: Sending Path Planning Request from Rbt @ (  8.273,  -1.212) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529892.263772169] [planner]: Path Found from Rbt @ (  8.273,  -1.212) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529892.709718757] [behavior]: Sending Path Planning Request from Rbt @ (  8.249,  -1.254) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529892.763477550] [planner]: Path Found from Rbt @ (  8.249,  -1.254) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529893.209595546] [behavior]: Sending Path Planning Request from Rbt @ (  8.194,  -1.317) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529893.264180164] [planner]: Path Found from Rbt @ (  8.194,  -1.317) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529893.709345111] [behavior]: Sending Path Planning Request from Rbt @ (  8.121,  -1.385) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529893.765095946] [planner]: Path Found from Rbt @ (  8.121,  -1.385) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529894.209664599] [behavior]: Sending Path Planning Request from Rbt @ (  8.071,  -1.432) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529894.253662543] [planner]: Path Found from Rbt @ (  8.071,  -1.432) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529894.709442870] [behavior]: Sending Path Planning Request from Rbt @ (  8.039,  -1.464) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529894.762407078] [planner]: Path Found from Rbt @ (  8.039,  -1.464) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529895.209374955] [behavior]: Sending Path Planning Request from Rbt @ (  8.009,  -1.494) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529895.263988047] [planner]: Path Found from Rbt @ (  8.009,  -1.494) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529895.709567279] [behavior]: Sending Path Planning Request from Rbt @ (  7.991,  -1.513) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529895.766327277] [planner]: Path Found from Rbt @ (  7.991,  -1.513) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529896.209322865] [behavior]: Sending Path Planning Request from Rbt @ (  7.967,  -1.544) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529896.254072967] [planner]: Path Found from Rbt @ (  7.967,  -1.544) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529896.709334768] [behavior]: Sending Path Planning Request from Rbt @ (  7.939,  -1.588) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529896.759789884] [planner]: Path Found from Rbt @ (  7.939,  -1.588) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529897.209421950] [behavior]: Sending Path Planning Request from Rbt @ (  7.922,  -1.620) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529897.261929408] [planner]: Path Found from Rbt @ (  7.922,  -1.620) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529897.709881008] [behavior]: Sending Path Planning Request from Rbt @ (  7.907,  -1.662) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529897.763086629] [planner]: Path Found from Rbt @ (  7.907,  -1.662) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529898.209661231] [behavior]: Sending Path Planning Request from Rbt @ (  7.894,  -1.737) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529898.252269302] [planner]: Path Found from Rbt @ (  7.894,  -1.737) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529898.709637971] [behavior]: Sending Path Planning Request from Rbt @ (  7.892,  -1.793) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529898.758420138] [planner]: Path Found from Rbt @ (  7.892,  -1.793) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529899.209670958] [behavior]: Sending Path Planning Request from Rbt @ (  7.892,  -1.833) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529899.261525087] [planner]: Path Found from Rbt @ (  7.892,  -1.833) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529899.709394452] [behavior]: Sending Path Planning Request from Rbt @ (  7.893,  -1.868) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529899.766301374] [planner]: Path Found from Rbt @ (  7.893,  -1.868) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529900.209362702] [behavior]: Sending Path Planning Request from Rbt @ (  7.895,  -1.963) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529900.263574456] [planner]: Path Found from Rbt @ (  7.895,  -1.963) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529900.709860353] [behavior]: Sending Path Planning Request from Rbt @ (  7.896,  -2.063) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529900.752189809] [planner]: Path Found from Rbt @ (  7.896,  -2.063) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529901.209321776] [behavior]: Sending Path Planning Request from Rbt @ (  7.896,  -2.163) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529901.260138524] [planner]: Path Found from Rbt @ (  7.896,  -2.163) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529901.709309548] [behavior]: Sending Path Planning Request from Rbt @ (  7.896,  -2.263) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529901.761305179] [planner]: Path Found from Rbt @ (  7.896,  -2.263) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529902.209259045] [behavior]: Sending Path Planning Request from Rbt @ (  7.896,  -2.363) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529902.261119461] [planner]: Path Found from Rbt @ (  7.896,  -2.363) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529902.709605531] [behavior]: Sending Path Planning Request from Rbt @ (  7.896,  -2.463) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529902.750002310] [planner]: Path Found from Rbt @ (  7.896,  -2.463) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529903.209644140] [behavior]: Sending Path Planning Request from Rbt @ (  7.896,  -2.563) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529903.257195026] [planner]: Path Found from Rbt @ (  7.896,  -2.563) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529903.709271626] [behavior]: Sending Path Planning Request from Rbt @ (  7.896,  -2.663) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529903.762620380] [planner]: Path Found from Rbt @ (  7.896,  -2.663) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529904.209417096] [behavior]: Sending Path Planning Request from Rbt @ (  7.896,  -2.763) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529904.262528891] [planner]: Path Found from Rbt @ (  7.896,  -2.763) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529904.709639568] [behavior]: Sending Path Planning Request from Rbt @ (  7.896,  -2.863) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529904.749409549] [planner]: Path Found from Rbt @ (  7.896,  -2.863) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529905.209615083] [behavior]: Sending Path Planning Request from Rbt @ (  7.896,  -2.961) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529905.255553144] [planner]: Path Found from Rbt @ (  7.896,  -2.961) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529905.709572961] [behavior]: Sending Path Planning Request from Rbt @ (  7.897,  -3.039) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529905.755703485] [planner]: Path Found from Rbt @ (  7.897,  -3.039) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529906.209292582] [behavior]: Sending Path Planning Request from Rbt @ (  7.901,  -3.117) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529906.259620022] [planner]: Path Found from Rbt @ (  7.901,  -3.117) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529906.709587967] [behavior]: Sending Path Planning Request from Rbt @ (  7.902,  -3.192) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529906.761525232] [planner]: Path Found from Rbt @ (  7.902,  -3.192) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529907.209290639] [behavior]: Sending Path Planning Request from Rbt @ (  7.905,  -3.244) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529907.247805144] [planner]: Path Found from Rbt @ (  7.905,  -3.244) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529907.709250641] [behavior]: Sending Path Planning Request from Rbt @ (  7.904,  -3.285) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529907.756647347] [planner]: Path Found from Rbt @ (  7.904,  -3.285) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529908.209249875] [behavior]: Sending Path Planning Request from Rbt @ (  7.902,  -3.320) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529908.258455839] [planner]: Path Found from Rbt @ (  7.902,  -3.320) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529908.709863405] [behavior]: Sending Path Planning Request from Rbt @ (  7.900,  -3.355) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529908.762250913] [planner]: Path Found from Rbt @ (  7.900,  -3.355) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529909.209608664] [behavior]: Sending Path Planning Request from Rbt @ (  7.899,  -3.394) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529909.248351367] [planner]: Path Found from Rbt @ (  7.899,  -3.394) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529909.709304603] [behavior]: Sending Path Planning Request from Rbt @ (  7.898,  -3.433) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529909.756272212] [planner]: Path Found from Rbt @ (  7.898,  -3.433) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529910.209629649] [behavior]: Sending Path Planning Request from Rbt @ (  7.903,  -3.466) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529910.257744311] [planner]: Path Found from Rbt @ (  7.903,  -3.466) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529910.709831648] [behavior]: Sending Path Planning Request from Rbt @ (  7.912,  -3.499) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529910.759275720] [planner]: Path Found from Rbt @ (  7.912,  -3.499) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529911.209202366] [behavior]: Sending Path Planning Request from Rbt @ (  7.929,  -3.533) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529911.246869022] [planner]: Path Found from Rbt @ (  7.929,  -3.533) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529911.709849875] [behavior]: Sending Path Planning Request from Rbt @ (  7.951,  -3.565) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529911.754323008] [planner]: Path Found from Rbt @ (  7.951,  -3.565) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529912.209858611] [behavior]: Sending Path Planning Request from Rbt @ (  7.974,  -3.592) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529912.263032475] [planner]: Path Found from Rbt @ (  7.974,  -3.592) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529912.709842313] [behavior]: Sending Path Planning Request from Rbt @ (  7.996,  -3.615) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529912.771409482] [planner]: Path Found from Rbt @ (  7.996,  -3.615) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529913.209603789] [behavior]: Sending Path Planning Request from Rbt @ (  8.020,  -3.639) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529913.262959749] [planner]: Path Found from Rbt @ (  8.020,  -3.639) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529913.709292500] [behavior]: Sending Path Planning Request from Rbt @ (  8.051,  -3.668) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529913.746805558] [planner]: Path Found from Rbt @ (  8.051,  -3.668) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529914.209823338] [behavior]: Sending Path Planning Request from Rbt @ (  8.092,  -3.706) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529914.256404072] [planner]: Path Found from Rbt @ (  8.092,  -3.706) to Goal @ (  8.200, -3.800)[0m
+[behavior-8] [0m[INFO] [1793529914.609367423] [behavior]: Reached Goal @ (  8.200,  -3.800).[0m
+[behavior-8] [0m[INFO] [1793529914.709314837] [behavior]: Sending Path Planning Request from Rbt @ (  8.129,  -3.741) to Goal @ (  8.200,  -3.800)[0m
+[planner-10] [0m[INFO] [1793529914.756497427] [planner]: Path Found from Rbt @ (  8.129,  -3.741) to Goal @ (  8.200, -3.800)[0m
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [planner-10]: sending signal 'SIGINT' to process[planner-10]
+[INFO] [controller-9]: sending signal 'SIGINT' to process[controller-9]
+[INFO] [behavior-8]: sending signal 'SIGINT' to process[behavior-8]
+[INFO] [static_transform_publisher-7]: sending signal 'SIGINT' to process[static_transform_publisher-7]
+[INFO] [rviz2-6]: sending signal 'SIGINT' to process[rviz2-6]
+[INFO] [map_loader-5]: sending signal 'SIGINT' to process[map_loader-5]
+[INFO] [parameter_bridge-4]: sending signal 'SIGINT' to process[parameter_bridge-4]
+[INFO] [robot_state_publisher-2]: sending signal 'SIGINT' to process[robot_state_publisher-2]
+[INFO] [gazebo-1]: sending signal 'SIGINT' to process[gazebo-1]
+[planner-10] Traceback (most recent call last):
+[planner-10]   File "/home/kmyming/ee3305/install/ee3305_py/lib/ee3305_py/planner", line 33, in <module>
+[planner-10]     sys.exit(load_entry_point('ee3305-py', 'console_scripts', 'planner')())
+[planner-10]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[planner-10]   File "/home/kmyming/ee3305/build/ee3305_py/ee3305_py/planner.py", line 489, in main
+[planner-10]     rclpy.spin(Planner())
+[planner-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+[controller-9] Traceback (most recent call last):
+[controller-9]   File "/home/kmyming/ee3305/install/ee3305_py/lib/ee3305_py/controller", line 33, in <module>
+[controller-9]     sys.exit(load_entry_point('ee3305-py', 'console_scripts', 'controller')())
+[planner-10]     executor.spin_once()
+[planner-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 926, in spin_once
+[planner-10]     self._spin_once_impl(timeout_sec)
+[planner-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 907, in _spin_once_impl
+[planner-10]     handler, entity, node = self.wait_for_ready_callbacks(
+[planner-10]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[planner-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 877, in wait_for_ready_callbacks
+[controller-9]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[controller-9]   File "/home/kmyming/ee3305/build/ee3305_py/ee3305_py/controller.py", line 343, in main
+[controller-9]     rclpy.spin(Controller())
+[controller-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+[controller-9]     executor.spin_once()
+[controller-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 926, in spin_once
+[controller-9]     self._spin_once_impl(timeout_sec)
+[controller-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 907, in _spin_once_impl
+[controller-9]     handler, entity, node = self.wait_for_ready_callbacks(
+[controller-9]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[controller-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 877, in wait_for_ready_callbacks
+[controller-9]     return next(self._cb_iter)
+[controller-9]            ^^^^^^^^^^^^^^^^^^^
+[controller-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 781, in _wait_for_ready_callbacks
+[behavior-8] Traceback (most recent call last):
+[behavior-8]   File "/home/kmyming/ee3305/install/ee3305_py/lib/ee3305_py/behavior", line 33, in <module>
+[controller-9]     wait_set.wait(timeout_nsec)
+[controller-9] KeyboardInterrupt
+[behavior-8]     sys.exit(load_entry_point('ee3305-py', 'console_scripts', 'behavior')())
+[behavior-8]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[behavior-8]   File "/home/kmyming/ee3305/build/ee3305_py/ee3305_py/behavior.py", line 263, in main
+[behavior-8]     rclpy.spin(Behavior())
+[behavior-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+[behavior-8]     executor.spin_once()
+[behavior-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 926, in spin_once
+[behavior-8]     self._spin_once_impl(timeout_sec)
+[behavior-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 907, in _spin_once_impl
+[behavior-8]     handler, entity, node = self.wait_for_ready_callbacks(
+[behavior-8]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[behavior-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 877, in wait_for_ready_callbacks
+[behavior-8]     return next(self._cb_iter)
+[behavior-8]            ^^^^^^^^^^^^^^^^^^^
+[behavior-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 781, in _wait_for_ready_callbacks
+[behavior-8]     wait_set.wait(timeout_nsec)
+[behavior-8] KeyboardInterrupt
+[planner-10]     return next(self._cb_iter)
+[planner-10]            ^^^^^^^^^^^^^^^^^^^
+[planner-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 781, in _wait_for_ready_callbacks
+[planner-10]     wait_set.wait(timeout_nsec)
+[planner-10] KeyboardInterrupt
+[static_transform_publisher-7] [INFO] [1793529914.808195783] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[rviz2-6] [INFO] [1793529914.808709598] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[map_loader-5] [INFO] [1793529914.809247596] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[parameter_bridge-4] [INFO] [1793529914.809757248] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[robot_state_publisher-2] [INFO] [1793529914.810704038] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ERROR] [behavior-8]: process has died [pid 25276, exit code -2, cmd '/home/kmyming/ee3305/install/ee3305_py/lib/ee3305_py/behavior --ros-args --params-file /home/kmyming/ee3305/install/ee3305_bringup/share/ee3305_bringup/params/run.yaml'].
+[ERROR] [planner-10]: process has died [pid 25278, exit code -2, cmd '/home/kmyming/ee3305/install/ee3305_py/lib/ee3305_py/planner --ros-args --params-file /home/kmyming/ee3305/install/ee3305_bringup/share/ee3305_bringup/params/run.yaml'].
+[ERROR] [controller-9]: process has died [pid 25277, exit code -2, cmd '/home/kmyming/ee3305/install/ee3305_py/lib/ee3305_py/controller --ros-args --params-file /home/kmyming/ee3305/install/ee3305_bringup/share/ee3305_bringup/params/run.yaml'].
+[INFO] [map_loader-5]: process has finished cleanly [pid 25273]
+[INFO] [static_transform_publisher-7]: process has finished cleanly [pid 25275]
+[INFO] [parameter_bridge-4]: process has finished cleanly [pid 25272]
+[INFO] [robot_state_publisher-2]: process has finished cleanly [pid 25269]
+[INFO] [rviz2-6]: process has finished cleanly [pid 25274]
+[ERROR] [gazebo-1]: process[gazebo-1] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[INFO] [gazebo-1]: sending signal 'SIGTERM' to process[gazebo-1]
+[ERROR] [gazebo-1]: process has died [pid 25268, exit code -15, cmd 'ruby /opt/ros/jazzy/opt/gz_tools_vendor/bin/gz sim /home/kmyming/ee3305/install/ee3305_bringup/share/ee3305_bringup/worlds/turtlebot3_house.world -r -v1 -s --force-version 8'].
