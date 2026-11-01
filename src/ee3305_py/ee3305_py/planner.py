@@ -14,7 +14,7 @@ from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import OccupancyGrid, Path
 
 
-class AStarNode:
+class SearchNode:
     def __init__(self, c, r):
         self.parent = None
         self.f = inf
@@ -128,7 +128,7 @@ class Planner(Node):
             return  # silently return if no new request or map is not received.
 
         # run the path planner
-        self.thetaStar_(self.rbt_x_, self.rbt_y_, self.goal_x_, self.goal_y_)
+        self.planPath_(self.rbt_x_, self.rbt_y_, self.goal_x_, self.goal_y_)
 
         self.has_new_request_ = False
 
@@ -324,8 +324,7 @@ class Planner(Node):
         return list(zip(x.tolist(), y.tolist()))
 
 
-    # Runs the Lazy Theta* path planning algorithm based on the world coordinates.
-    def thetaStar_(self, start_x, start_y, goal_x, goal_y):
+    def planPath_(self, start_x, start_y, goal_x, goal_y):
 
         # Initializations ---------------------------------
         rbt_c, rbt_r = self.XYToCR_(start_x, start_y)
@@ -341,7 +340,7 @@ class Planner(Node):
         # Initialize nodes (one per cell, indexed by flattened index)
         cols = self.costmap_cols_
         nodes = [
-            AStarNode(i % cols, i // cols)
+            SearchNode(i % cols, i // cols)
             for i in range(cols * self.costmap_rows_)
         ]
 

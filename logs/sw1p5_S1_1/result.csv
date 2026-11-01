@@ -1,0 +1,2 @@
+config,scenario,run,result,elapsed,distance,goal_x,goal_y,timeout,goal_tol
+sw1p5,S1,1,reached,88.96,0.08142646441576964,-4.9,-2.1,210.0,0.15
